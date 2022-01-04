@@ -1,0 +1,14 @@
+version: '2'
+services:
+  background:
+    image: waysn/background
+    ports:
+    - "8080:8080"
+    environment:
+    - spring.profiles.active=dev
+  api:
+    image: waysn/api
+    ports:
+    - "8081:8081"
+    environment:
+    - spring.profiles.active=dev
