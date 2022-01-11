@@ -3,13 +3,10 @@ package com.waysn.modules.blog.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.waysn.comm.service.impl.CrudServiceImpl;
-import com.waysn.comm.constant.Constant;
 import com.waysn.modules.blog.dao.NavbarinfoDao;
 import com.waysn.modules.blog.dto.NavbarinfoDTO;
 import com.waysn.modules.blog.entity.NavbarinfoEntity;
 import com.waysn.modules.blog.service.NavbarinfoService;
-import com.waysn.modules.security.user.SecurityUser;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +22,7 @@ import java.util.Map;
 public class NavbarinfoServiceImpl extends CrudServiceImpl<NavbarinfoDao, NavbarinfoEntity, NavbarinfoDTO> implements NavbarinfoService {
 
     @Override
-    public QueryWrapper<NavbarinfoEntity> getWrapper(Map<String, Object> params){
+    public QueryWrapper<NavbarinfoEntity> getWrapper(Map<String, Object> params) {
         QueryWrapper<NavbarinfoEntity> wrapper = new QueryWrapper<>();
         return wrapper;
     }
@@ -33,8 +30,16 @@ public class NavbarinfoServiceImpl extends CrudServiceImpl<NavbarinfoDao, Navbar
 
     @Override
     public List<NavbarinfoEntity> getAllNavbarInfo() {
-        LambdaQueryWrapper<NavbarinfoEntity> wrapper =new LambdaQueryWrapper<>();
-        wrapper.eq(NavbarinfoEntity::getIsUsed,true);
+        LambdaQueryWrapper<NavbarinfoEntity> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(NavbarinfoEntity::getIsUsed, true);
+        return baseDao.selectList(wrapper);
+    }
+
+    @Override
+    public List<NavbarinfoEntity> getAllNavbarInfoByParent(String parentCode) {
+        LambdaQueryWrapper<NavbarinfoEntity> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(NavbarinfoEntity::getIsUsed, true);
+        wrapper.eq(NavbarinfoEntity::getParentCode, parentCode);
         return baseDao.selectList(wrapper);
     }
 }

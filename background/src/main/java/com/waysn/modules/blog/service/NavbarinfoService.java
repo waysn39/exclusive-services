@@ -14,4 +14,6 @@ import java.util.List;
  */
 public interface NavbarinfoService extends CrudService<NavbarinfoEntity, NavbarinfoDTO> {
     List<NavbarinfoEntity> getAllNavbarInfo();
+
+    List<NavbarinfoEntity> getAllNavbarInfoByParent(String parentCode);
 }
