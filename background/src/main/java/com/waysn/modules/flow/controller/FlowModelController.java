@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.flow.controller;
@@ -26,25 +26,25 @@ import java.util.Map;
 /**
  * 模型管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @RestController
 @RequestMapping("/flow/model")
 @AllArgsConstructor
-@Api(tags="模型管理")
+@Api(tags = "模型管理")
 public class FlowModelController {
     private final FlowModelService flowModelService;
 
     @GetMapping("page")
     @ApiOperation("分页")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType="int") ,
-        @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query",required = true, dataType="int") ,
-        @ApiImplicitParam(name = "key", value = "key", paramType = "query", dataType="String"),
-        @ApiImplicitParam(name = "name", value = "name", paramType = "query", dataType="String")
+            @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "key", value = "key", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "name", value = "name", paramType = "query", dataType = "String")
     })
     @RequiresPermissions("sys:model:all")
-    public Result<PageData<FlowModelEntity>> page(@ApiIgnore @RequestParam Map<String, Object> params){
+    public Result<PageData<FlowModelEntity>> page(@ApiIgnore @RequestParam Map<String, Object> params) {
         PageData<FlowModelEntity> page = flowModelService.page(params);
 
         return new Result<PageData<FlowModelEntity>>().ok(page);

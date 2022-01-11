@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.flow.service;
@@ -10,9 +10,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.waysn.comm.page.PageData;
 import com.waysn.comm.service.impl.BaseServiceImpl;
+import com.waysn.modules.flow.dao.FlowModelDao;
 import com.waysn.modules.flow.entity.FlowModelEntity;
 import com.waysn.modules.security.user.SecurityUser;
-import com.waysn.modules.flow.dao.FlowModelDao;
 import lombok.AllArgsConstructor;
 import org.apache.poi.util.IOUtils;
 import org.flowable.bpmn.converter.BpmnXMLConverter;
@@ -38,7 +38,7 @@ import java.util.Map;
 /**
  * 模型管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 @AllArgsConstructor
@@ -90,7 +90,7 @@ public class FlowModelService extends BaseServiceImpl<FlowModelDao, FlowModelEnt
         modelData.setKey(processDefinition.getKey());
         modelData.setName(processDefinition.getName());
 
-        int version = (int)repositoryService.createModelQuery().modelKey(modelData.getKey()).count() + 1;
+        int version = (int) repositoryService.createModelQuery().modelKey(modelData.getKey()).count() + 1;
         modelData.setVersion(version);
         modelData.setModelType(0);
         modelData.setCreatedBy(SecurityUser.getUser().getUsername());
@@ -99,7 +99,7 @@ public class FlowModelService extends BaseServiceImpl<FlowModelDao, FlowModelEnt
 
         List<String> names = repositoryService.getDeploymentResourceNames(processDefinition.getDeploymentId());
         for (String name : names) {
-            if(name.contains("png")) {
+            if (name.contains("png")) {
                 InputStream is = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), name);
 
                 byte[] b = new byte[is.available()];

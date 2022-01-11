@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -19,21 +19,21 @@ import java.util.Map;
 
 /**
  * 角色
- * 
- * @author Mark sunlightcs@gmail.com
+ *
+ * @author jinyiming waysn39@hotmail.com
  */
 public interface SysRoleService extends BaseService<SysRoleEntity> {
 
-	PageData<SysRoleDTO> page(Map<String, Object> params);
+    PageData<SysRoleDTO> page(Map<String, Object> params);
 
-	List<SysRoleDTO> list(Map<String, Object> params);
+    List<SysRoleDTO> list(Map<String, Object> params);
 
-	SysRoleDTO get(Long id);
+    SysRoleDTO get(Long id);
 
-	void save(SysRoleDTO dto);
+    void save(SysRoleDTO dto);
 
-	void update(SysRoleDTO dto);
+    void update(SysRoleDTO dto);
 
-	void delete(Long[] ids);
+    void delete(Long[] ids);
 
 }

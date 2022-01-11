@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.ureport.provider;
@@ -9,8 +9,8 @@ package com.waysn.modules.ureport.provider;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bstek.ureport.provider.report.ReportFile;
 import com.bstek.ureport.provider.report.ReportProvider;
-import com.waysn.modules.ureport.entity.UReportDataEntity;
 import com.waysn.modules.ureport.dao.UReportDataDao;
+import com.waysn.modules.ureport.entity.UReportDataEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 /**
  * UReport Provider
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Component
 public class RenUReportProvider implements ReportProvider {
@@ -35,7 +35,7 @@ public class RenUReportProvider implements ReportProvider {
     @Override
     public InputStream loadReport(String file) {
         UReportDataEntity entity = ureportDataDao.selectOne(this.getWrapper(file));
-        if(entity == null){
+        if (entity == null) {
             return null;
         }
 
@@ -58,26 +58,26 @@ public class RenUReportProvider implements ReportProvider {
     @Override
     public void saveReport(String file, String content) {
         UReportDataEntity entity = ureportDataDao.selectOne(this.getWrapper(file));
-        if(entity == null){
+        if (entity == null) {
             entity = new UReportDataEntity();
             entity.setFileName(this.getFileName(file));
             entity.setContent(content.getBytes());
             ureportDataDao.insert(entity);
-        }else{
+        } else {
             entity.setContent(content.getBytes());
             ureportDataDao.updateById(entity);
         }
     }
 
-    private QueryWrapper<UReportDataEntity> getWrapper(String file){
+    private QueryWrapper<UReportDataEntity> getWrapper(String file) {
         QueryWrapper<UReportDataEntity> wrapper = new QueryWrapper<>();
         wrapper.eq("file_name", this.getFileName(file));
 
         return wrapper;
     }
 
-    private String getFileName(String name){
-        if(name.startsWith(PREFIX)){
+    private String getFileName(String name) {
+        if (name.startsWith(PREFIX)) {
             name = name.substring(PREFIX.length(), name.length());
         }
         return name;

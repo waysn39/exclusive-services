@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -17,27 +17,27 @@ import java.util.Map;
 
 /**
  * 系统用户
- * 
- * @author Mark sunlightcs@gmail.com
+ *
+ * @author jinyiming waysn39@hotmail.com
  */
 @Mapper
 public interface SysUserDao extends BaseDao<SysUserEntity> {
 
-	List<SysUserEntity> getList(Map<String, Object> params);
+    List<SysUserEntity> getList(Map<String, Object> params);
 
-	SysUserEntity getById(Long id);
+    SysUserEntity getById(Long id);
 
-	SysUserEntity getByUsername(String username);
+    SysUserEntity getByUsername(String username);
 
-	int updatePassword(@Param("id") Long id, @Param("newPassword") String newPassword);
+    int updatePassword(@Param("id") Long id, @Param("newPassword") String newPassword);
 
-	/**
-	 * 根据部门ID，查询用户数
-	 */
-	int getCountByDeptId(Long deptId);
+    /**
+     * 根据部门ID，查询用户数
+     */
+    int getCountByDeptId(Long deptId);
 
-	/**
-	 * 根据部门ID,查询用户ID列表
-	 */
-	List<Long> getUserIdListByDeptId(List<Long> deptIdList);
+    /**
+     * 根据部门ID,查询用户ID列表
+     */
+    List<Long> getUserIdListByDeptId(List<Long> deptIdList);
 }

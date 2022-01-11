@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -12,7 +12,7 @@ import com.qiniu.sms.SmsManager;
 import com.qiniu.util.Auth;
 import com.waysn.comm.constant.Constant;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.comm.utils.SpringContextUtils;
 import com.waysn.modules.message.service.SysSmsLogService;
 
@@ -21,12 +21,12 @@ import java.util.LinkedHashMap;
 /**
  * 七牛短信服务
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class QiniuSmsService extends AbstractSmsService {
     private SmsManager smsManager;
 
-    public QiniuSmsService(SmsConfig config){
+    public QiniuSmsService(SmsConfig config) {
         this.config = config;
 
         //初始化
@@ -34,7 +34,7 @@ public class QiniuSmsService extends AbstractSmsService {
     }
 
 
-    private void init(){
+    private void init() {
         Auth auth = Auth.create(config.getQiniuAccessKey(), config.getQiniuSecretKey());
         smsManager = new SmsManager(auth);
     }
@@ -50,11 +50,11 @@ public class QiniuSmsService extends AbstractSmsService {
         try {
             response = smsManager.sendSingleMessage(template, mobile, params);
         } catch (Exception e) {
-            throw new RenException(ErrorCode.SEND_SMS_ERROR, e, "");
+            throw new ServicesException(ErrorCode.SEND_SMS_ERROR, e, "");
         }
 
         int status = Constant.SUCCESS;
-        if(!response.isOK()){
+        if (!response.isOK()) {
             status = Constant.FAIL;
         }
 
@@ -62,8 +62,8 @@ public class QiniuSmsService extends AbstractSmsService {
         SysSmsLogService sysSmsLogService = SpringContextUtils.getBean(SysSmsLogService.class);
         sysSmsLogService.save(smsCode, Constant.SmsService.QCLOUD.getValue(), mobile, params, status);
 
-        if(status == Constant.FAIL){
-            throw new RenException(ErrorCode.SEND_SMS_ERROR, response.error);
+        if (status == Constant.FAIL) {
+            throw new ServicesException(ErrorCode.SEND_SMS_ERROR, response.error);
         }
     }
 }

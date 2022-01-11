@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -25,21 +25,21 @@ import java.util.Map;
 /**
  * 模板管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class TemplateServiceImpl extends BaseServiceImpl<TemplateDao, TemplateEntity> implements TemplateService {
     @Override
     public PageData<TemplateEntity> page(Map<String, Object> params) {
         IPage<TemplateEntity> page = baseDao.selectPage(
-            getPage(params, Constant.CREATE_DATE, false),
-            getWrapper(params)
+                getPage(params, Constant.CREATE_DATE, false),
+                getWrapper(params)
         );
         return new PageData<>(page.getRecords(), page.getTotal());
     }
 
-    private QueryWrapper<TemplateEntity> getWrapper(Map<String, Object> params){
-        String name = (String)params.get("name");
+    private QueryWrapper<TemplateEntity> getWrapper(Map<String, Object> params) {
+        String name = (String) params.get("name");
 
         QueryWrapper<TemplateEntity> wrapper = new QueryWrapper<>();
         wrapper.like(StringUtils.isNotEmpty(name), "name", name);
@@ -56,7 +56,7 @@ public class TemplateServiceImpl extends BaseServiceImpl<TemplateDao, TemplateEn
     }
 
     @Override
-    public void updateStatusBatch(Long[] ids, int status){
+    public void updateStatusBatch(Long[] ids, int status) {
         Map<String, Object> map = new HashMap<>(2);
         map.put("ids", ids);
         map.put("status", status);

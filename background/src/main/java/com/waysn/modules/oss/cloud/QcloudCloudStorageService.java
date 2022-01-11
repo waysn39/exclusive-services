@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -16,7 +16,7 @@ import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.model.PutObjectResult;
 import com.qcloud.cos.region.Region;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -25,24 +25,24 @@ import java.io.InputStream;
 /**
  * 腾讯云存储
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class QcloudCloudStorageService extends AbstractCloudStorageService {
     private COSCredentials credentials;
     private ClientConfig clientConfig;
 
-    public QcloudCloudStorageService(CloudStorageConfig config){
+    public QcloudCloudStorageService(CloudStorageConfig config) {
         this.config = config;
 
         //初始化
         init();
     }
 
-    private void init(){
+    private void init() {
         //1、初始化用户身份信息(secretId, secretKey)
         credentials = new BasicCOSCredentials(config.getQcloudSecretId(), config.getQcloudSecretKey());
-    	
-    	//2、设置bucket的区域, COS地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
+
+        //2、设置bucket的区域, COS地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
         clientConfig = new ClientConfig(new Region(config.getQcloudRegion()));
     }
 
@@ -53,21 +53,21 @@ public class QcloudCloudStorageService extends AbstractCloudStorageService {
 
     @Override
     public String upload(InputStream inputStream, String path) {
-    	try {
+        try {
             COSClient client = new COSClient(credentials, clientConfig);
 
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentLength(inputStream.available());
-            String bucketName = config.getQcloudBucketName() +"-"+ config.getQcloudAppId();
+            String bucketName = config.getQcloudBucketName() + "-" + config.getQcloudAppId();
             PutObjectRequest request = new PutObjectRequest(bucketName, path, inputStream, metadata);
             PutObjectResult result = client.putObject(request);
-            
+
             client.shutdown();
-            if(result.getETag() == null){
-                throw new RenException(ErrorCode.OSS_UPLOAD_FILE_ERROR, "");
+            if (result.getETag() == null) {
+                throw new ServicesException(ErrorCode.OSS_UPLOAD_FILE_ERROR, "");
             }
         } catch (IOException e) {
-            throw new RenException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
+            throw new ServicesException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
         }
 
         return config.getQcloudDomain() + "/" + path;

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -33,13 +33,13 @@ import java.util.Map;
 
 
 /**
-* 岗位管理
-*
-* @author Mark sunlightcs@gmail.com
-*/
+ * 岗位管理
+ *
+ * @author jinyiming waysn39@hotmail.com
+ */
 @RestController
 @RequestMapping("sys/post")
-@Api(tags="岗位管理")
+@Api(tags = "岗位管理")
 public class SysPostController {
     @Autowired
     private SysPostService sysPostService;
@@ -47,13 +47,13 @@ public class SysPostController {
     @GetMapping("page")
     @ApiOperation("分页")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType="int") ,
-        @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query",required = true, dataType="int") ,
-        @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType="String") ,
-        @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType="String")
+            @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType = "String")
     })
     @RequiresPermissions("sys:post:page")
-    public Result<PageData<SysPostDTO>> page(@ApiIgnore @RequestParam Map<String, Object> params){
+    public Result<PageData<SysPostDTO>> page(@ApiIgnore @RequestParam Map<String, Object> params) {
         PageData<SysPostDTO> page = sysPostService.page(params);
 
         return new Result<PageData<SysPostDTO>>().ok(page);
@@ -61,7 +61,7 @@ public class SysPostController {
 
     @GetMapping("list")
     @ApiOperation("列表")
-    public Result<List<SysPostDTO>> list(){
+    public Result<List<SysPostDTO>> list() {
         Map<String, Object> params = new HashMap<>();
         //正常岗位列表
         params.put("status", "1");
@@ -73,7 +73,7 @@ public class SysPostController {
     @GetMapping("{id}")
     @ApiOperation("信息")
     @RequiresPermissions("sys:post:info")
-    public Result<SysPostDTO> get(@PathVariable("id") Long id){
+    public Result<SysPostDTO> get(@PathVariable("id") Long id) {
         SysPostDTO data = sysPostService.get(id);
 
         return new Result<SysPostDTO>().ok(data);
@@ -83,7 +83,7 @@ public class SysPostController {
     @ApiOperation("保存")
     @LogOperation("保存")
     @RequiresPermissions("sys:post:save")
-    public Result save(@RequestBody SysPostDTO dto){
+    public Result save(@RequestBody SysPostDTO dto) {
         //效验数据
         ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
 
@@ -96,7 +96,7 @@ public class SysPostController {
     @ApiOperation("修改")
     @LogOperation("修改")
     @RequiresPermissions("sys:post:update")
-    public Result update(@RequestBody SysPostDTO dto){
+    public Result update(@RequestBody SysPostDTO dto) {
         //效验数据
         ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
 
@@ -109,7 +109,7 @@ public class SysPostController {
     @ApiOperation("删除")
     @LogOperation("删除")
     @RequiresPermissions("sys:post:delete")
-    public Result delete(@RequestBody Long[] ids){
+    public Result delete(@RequestBody Long[] ids) {
         //效验数据
         AssertUtils.isArrayEmpty(ids, "id");
 

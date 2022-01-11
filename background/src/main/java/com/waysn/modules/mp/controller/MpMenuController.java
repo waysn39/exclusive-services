@@ -1,8 +1,8 @@
 package com.waysn.modules.mp.controller;
 
 import com.waysn.comm.utils.Result;
-import com.waysn.modules.mp.service.MpMenuService;
 import com.waysn.modules.mp.dto.MpMenuDTO;
+import com.waysn.modules.mp.service.MpMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -12,14 +12,14 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.*;
 
 /**
-* 公众号自定义菜单
-*
-* @author Mark sunlightcs@gmail.com
-*/
+ * 公众号自定义菜单
+ *
+ * @author jinyiming waysn39@hotmail.com
+ */
 @AllArgsConstructor
 @RestController
 @RequestMapping("mp/menu/{appId}")
-@Api(tags="公众号自定义菜单")
+@Api(tags = "公众号自定义菜单")
 public class MpMenuController {
     private final MpMenuService mpMenuService;
     private final WxMpService wxService;
@@ -27,7 +27,7 @@ public class MpMenuController {
     @GetMapping
     @ApiOperation("信息")
     @RequiresPermissions("mp:menu:all")
-    public Result<MpMenuDTO> get(@PathVariable("appId") String appId){
+    public Result<MpMenuDTO> get(@PathVariable("appId") String appId) {
         MpMenuDTO data = mpMenuService.getByAppId(appId);
 
         return new Result<MpMenuDTO>().ok(data);
@@ -38,9 +38,9 @@ public class MpMenuController {
     @RequiresPermissions("mp:menu:all")
     public Result push(@PathVariable("appId") String appId, @RequestBody MpMenuDTO dto) {
         MpMenuDTO data = mpMenuService.getByAppId(appId);
-        if (data == null){
+        if (data == null) {
             mpMenuService.save(dto);
-        }else {
+        } else {
             dto.setId(data.getId());
             mpMenuService.update(dto);
         }

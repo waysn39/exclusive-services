@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -25,11 +25,11 @@ import java.util.Map;
 /**
  * 登录接口
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @RestController
 @RequestMapping("/api")
-@Api(tags="登录接口")
+@Api(tags = "登录接口")
 public class ApiLoginController {
     @Autowired
     private UserService userService;
@@ -39,7 +39,7 @@ public class ApiLoginController {
 
     @PostMapping("login")
     @ApiOperation("登录")
-    public Result<Map<String, Object>> login(@RequestBody LoginDTO dto){
+    public Result<Map<String, Object>> login(@RequestBody LoginDTO dto) {
         //表单校验
         ValidatorUtils.validateEntity(dto);
 
@@ -52,7 +52,7 @@ public class ApiLoginController {
     @Login
     @PostMapping("logout")
     @ApiOperation("退出")
-    public Result logout(@ApiIgnore @RequestAttribute("userId") Long userId){
+    public Result logout(@ApiIgnore @RequestAttribute("userId") Long userId) {
         tokenService.expireToken(userId);
         return new Result();
     }

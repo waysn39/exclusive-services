@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * 数据过滤
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class DataFilterInterceptor implements InnerInterceptor {
 
@@ -36,7 +36,7 @@ public class DataFilterInterceptor implements InnerInterceptor {
     public void beforeQuery(Executor executor, MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) {
         DataScope scope = getDataScope(parameter);
         // 不进行数据过滤
-        if(scope == null || StrUtil.isBlank(scope.getSqlFilter())){
+        if (scope == null || StrUtil.isBlank(scope.getSqlFilter())) {
             return;
         }
 
@@ -47,8 +47,8 @@ public class DataFilterInterceptor implements InnerInterceptor {
         PluginUtils.mpBoundSql(boundSql).sql(buildSql);
     }
 
-    private DataScope getDataScope(Object parameter){
-        if (parameter == null){
+    private DataScope getDataScope(Object parameter) {
+        if (parameter == null) {
             return null;
         }
 
@@ -67,21 +67,21 @@ public class DataFilterInterceptor implements InnerInterceptor {
         return null;
     }
 
-    private String getSelect(String buildSql, DataScope scope){
+    private String getSelect(String buildSql, DataScope scope) {
         try {
             Select select = (Select) CCJSqlParserUtil.parse(buildSql);
             PlainSelect plainSelect = (PlainSelect) select.getSelectBody();
 
             Expression expression = plainSelect.getWhere();
-            if(expression == null){
+            if (expression == null) {
                 plainSelect.setWhere(new StringValue(scope.getSqlFilter()));
-            }else{
-                AndExpression andExpression =  new AndExpression(expression, new StringValue(scope.getSqlFilter()));
+            } else {
+                AndExpression andExpression = new AndExpression(expression, new StringValue(scope.getSqlFilter()));
                 plainSelect.setWhere(andExpression);
             }
 
             return select.toString().replaceAll("'", "");
-        }catch (JSQLParserException e){
+        } catch (JSQLParserException e) {
             return buildSql;
         }
     }

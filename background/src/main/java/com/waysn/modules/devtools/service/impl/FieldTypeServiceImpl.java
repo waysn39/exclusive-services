@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -27,7 +27,7 @@ import java.util.Set;
 /**
  * 字段类型管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class FieldTypeServiceImpl extends BaseServiceImpl<FieldTypeDao, FieldTypeEntity> implements FieldTypeService {
@@ -35,8 +35,8 @@ public class FieldTypeServiceImpl extends BaseServiceImpl<FieldTypeDao, FieldTyp
     @Override
     public PageData<FieldTypeEntity> page(Map<String, Object> params) {
         IPage<FieldTypeEntity> page = baseDao.selectPage(
-            getPage(params, Constant.CREATE_DATE, false),
-            getWrapper(params)
+                getPage(params, Constant.CREATE_DATE, false),
+                getWrapper(params)
         );
         return new PageData<>(page.getRecords(), page.getTotal());
     }
@@ -45,15 +45,15 @@ public class FieldTypeServiceImpl extends BaseServiceImpl<FieldTypeDao, FieldTyp
     public Map<String, FieldTypeEntity> getMap() {
         List<FieldTypeEntity> list = baseDao.selectList(null);
         Map<String, FieldTypeEntity> map = new LinkedHashMap<>(list.size());
-        for(FieldTypeEntity entity : list){
+        for (FieldTypeEntity entity : list) {
             map.put(entity.getColumnType().toLowerCase(), entity);
         }
         return map;
     }
 
-    private QueryWrapper<FieldTypeEntity> getWrapper(Map<String, Object> params){
-        String attrType = (String)params.get("attrType");
-        String columnType = (String)params.get("columnType");
+    private QueryWrapper<FieldTypeEntity> getWrapper(Map<String, Object> params) {
+        String attrType = (String) params.get("attrType");
+        String columnType = (String) params.get("columnType");
 
         QueryWrapper<FieldTypeEntity> wrapper = new QueryWrapper<>();
         wrapper.like(StringUtils.isNotEmpty(attrType), "attr_type", attrType);

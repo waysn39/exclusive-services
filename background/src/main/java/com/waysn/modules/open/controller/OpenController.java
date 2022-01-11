@@ -2,6 +2,7 @@ package com.waysn.modules.open.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.waysn.comm.utils.Result;
+import com.waysn.comm.utils.StringUtils;
 import com.waysn.modules.blog.entity.NavbarinfoEntity;
 import com.waysn.modules.blog.service.NavbarinfoService;
 import com.waysn.modules.blog.vo.NavbarinfoVo;
@@ -29,7 +30,7 @@ public class OpenController {
         List<NavbarinfoVo> navbarinfoVoList = new ArrayList<>();
         for (NavbarinfoEntity item : data) {
             NavbarinfoVo navbarinfoVo = mapNavbarInfoVo(item);
-            getChildNavbar(item.getParentCode(), navbarinfoVo);
+            getChildNavbar(item.getNavbarCode(), navbarinfoVo);
             navbarinfoVoList.add(navbarinfoVo);
         }
         return new Result().ok(JSON.parse(JSON.toJSONString(navbarinfoVoList)));
@@ -39,6 +40,9 @@ public class OpenController {
         NavbarinfoVo navbarinfoVo = new NavbarinfoVo();
         navbarinfoVo.setNavbarName(item.getNavbarName());
         navbarinfoVo.setNavbarLink(item.getNavbarLink());
+        if (StringUtils.isNullOrEmpty(item.getNavbarLink())) {
+            navbarinfoVo.setNavbarLink(null);
+        }
         navbarinfoVo.setNavbarIconClass(item.getNavbarIconClass());
         return navbarinfoVo;
     }
@@ -49,7 +53,7 @@ public class OpenController {
             List<NavbarinfoVo> navbarinfoVoList = new ArrayList<>();
             for (NavbarinfoEntity item : childs) {
                 NavbarinfoVo navbarinfoVo = mapNavbarInfoVo(item);
-                getChildNavbar(item.getParentCode(), navbarinfoVo);
+                getChildNavbar(item.getNavbarCode(), navbarinfoVo);
                 navbarinfoVoList.add(navbarinfoVo);
             }
             currentItem.setChildren(navbarinfoVoList);

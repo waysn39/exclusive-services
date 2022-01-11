@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * 数据源管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class DataSourceServiceImpl extends BaseServiceImpl<DataSourceDao, DataSourceEntity> implements DataSourceService {
@@ -33,15 +33,15 @@ public class DataSourceServiceImpl extends BaseServiceImpl<DataSourceDao, DataSo
     @Override
     public PageData<DataSourceEntity> page(Map<String, Object> params) {
         IPage<DataSourceEntity> page = baseDao.selectPage(
-            getPage(params, Constant.CREATE_DATE, false),
-            getWrapper(params)
+                getPage(params, Constant.CREATE_DATE, false),
+                getWrapper(params)
         );
         return new PageData<>(page.getRecords(), page.getTotal());
     }
 
-    private QueryWrapper<DataSourceEntity> getWrapper(Map<String, Object> params){
-        String connName = (String)params.get("connName");
-        String dbType = (String)params.get("dbType");
+    private QueryWrapper<DataSourceEntity> getWrapper(Map<String, Object> params) {
+        String connName = (String) params.get("connName");
+        String dbType = (String) params.get("dbType");
 
         QueryWrapper<DataSourceEntity> wrapper = new QueryWrapper<>();
         wrapper.like(StringUtils.isNotEmpty(connName), "conn_name", connName);

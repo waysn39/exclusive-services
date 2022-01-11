@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,10 +13,10 @@ import com.waysn.comm.constant.Constant;
 import com.waysn.comm.page.PageData;
 import com.waysn.comm.service.impl.BaseServiceImpl;
 import com.waysn.comm.utils.ConvertUtils;
-import com.waysn.modules.log.entity.SysLogErrorEntity;
-import com.waysn.modules.log.service.SysLogErrorService;
 import com.waysn.modules.log.dao.SysLogErrorDao;
 import com.waysn.modules.log.dto.SysLogErrorDTO;
+import com.waysn.modules.log.entity.SysLogErrorEntity;
+import com.waysn.modules.log.service.SysLogErrorService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * 异常日志
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Service
@@ -35,8 +35,8 @@ public class SysLogErrorServiceImpl extends BaseServiceImpl<SysLogErrorDao, SysL
     @Override
     public PageData<SysLogErrorDTO> page(Map<String, Object> params) {
         IPage<SysLogErrorEntity> page = baseDao.selectPage(
-            getPage(params, Constant.CREATE_DATE, false),
-            getWrapper(params)
+                getPage(params, Constant.CREATE_DATE, false),
+                getWrapper(params)
         );
 
         return getPageData(page, SysLogErrorDTO.class);
@@ -49,7 +49,7 @@ public class SysLogErrorServiceImpl extends BaseServiceImpl<SysLogErrorDao, SysL
         return ConvertUtils.sourceToTarget(entityList, SysLogErrorDTO.class);
     }
 
-    private QueryWrapper<SysLogErrorEntity> getWrapper(Map<String, Object> params){
+    private QueryWrapper<SysLogErrorEntity> getWrapper(Map<String, Object> params) {
         QueryWrapper<SysLogErrorEntity> wrapper = new QueryWrapper<>();
         return wrapper;
     }

@@ -4,10 +4,10 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.waysn.comm.service.impl.BaseServiceImpl;
 import com.waysn.comm.utils.ConvertUtils;
-import com.waysn.modules.demo.service.ProductParamsService;
 import com.waysn.modules.demo.dao.ProductParamsDao;
 import com.waysn.modules.demo.dto.ProductParamsDTO;
 import com.waysn.modules.demo.entity.ProductParamsEntity;
+import com.waysn.modules.demo.service.ProductParamsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * 产品参数管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class ProductParamsServiceImpl extends BaseServiceImpl<ProductParamsDao, ProductParamsEntity> implements ProductParamsService {
@@ -25,12 +25,12 @@ public class ProductParamsServiceImpl extends BaseServiceImpl<ProductParamsDao, 
         //先删除子表数据
         deleteByProductIds(new Long[]{productId});
 
-        if(CollUtil.isEmpty(list)){
-            return ;
+        if (CollUtil.isEmpty(list)) {
+            return;
         }
 
         //保存子表数据
-        for(ProductParamsDTO dto : list){
+        for (ProductParamsDTO dto : list) {
             ProductParamsEntity entity = new ProductParamsEntity();
             entity.setProductId(productId);
             entity.setParamName(dto.getParamName());

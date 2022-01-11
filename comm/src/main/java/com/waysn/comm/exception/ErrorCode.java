@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,7 +13,7 @@ package com.waysn.comm.exception;
  * 如：10001（10代表系统模块，001代表业务代码）
  * </p>
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 public interface ErrorCode {

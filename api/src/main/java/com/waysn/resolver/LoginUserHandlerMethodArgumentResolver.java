@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -23,7 +23,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 /**
  * 有@LoginUser注解的方法参数，注入当前登录用户
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Component
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
@@ -40,12 +40,12 @@ public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgu
                                   NativeWebRequest request, WebDataBinderFactory factory) throws Exception {
         //获取用户ID
         Object object = request.getAttribute(AuthorizationInterceptor.USER_KEY, RequestAttributes.SCOPE_REQUEST);
-        if(object == null){
+        if (object == null) {
             return null;
         }
 
         //获取用户信息
-        UserEntity user = userService.getUserByUserId((Long)object);
+        UserEntity user = userService.getUserByUserId((Long) object);
 
         return user;
     }

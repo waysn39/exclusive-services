@@ -14,19 +14,19 @@ import java.util.Map;
 /**
  * Excel导入演示
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class ExcelDataServiceImpl extends CrudServiceImpl<ExcelDataDao, ExcelDataEntity, ExcelDataDTO> implements ExcelDataService {
 
     @Override
-    public QueryWrapper<ExcelDataEntity> getWrapper(Map<String, Object> params){
+    public QueryWrapper<ExcelDataEntity> getWrapper(Map<String, Object> params) {
         QueryWrapper<ExcelDataEntity> wrapper = new QueryWrapper<>();
 
-        String realName = (String)params.get("realName");
+        String realName = (String) params.get("realName");
         wrapper.like(StringUtils.isNotBlank(realName), "real_name", realName);
 
-        String identity = (String)params.get("identity");
+        String identity = (String) params.get("identity");
         wrapper.like(StringUtils.isNotBlank(identity), "identity", identity);
 
         return wrapper;

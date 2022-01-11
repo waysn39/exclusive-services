@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package com.waysn.modules.devtools.utils;
 
 import cn.hutool.core.map.MapUtil;
+import com.waysn.comm.exception.ServicesException;
 import freemarker.template.Template;
-import com.waysn.comm.exception.RenException;
 import org.apache.commons.lang.WordUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 
@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * 代码生成器工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class GenUtils {
 
@@ -33,11 +33,12 @@ public class GenUtils {
 
     /**
      * 获取模板渲染后的内容
+     *
      * @param content   模板内容
      * @param dataModel 数据模型
      */
     public static String getTemplateContent(String content, Map<String, Object> dataModel) {
-        if(MapUtil.isEmpty(dataModel)){
+        if (MapUtil.isEmpty(dataModel)) {
             return content;
         }
 
@@ -50,7 +51,7 @@ public class GenUtils {
             template.process(dataModel, sw);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RenException("渲染模板失败，请检查模板语法", e);
+            throw new ServicesException("渲染模板失败，请检查模板语法", e);
         }
 
         content = sw.toString();

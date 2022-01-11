@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * 角色用户关系
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Service
@@ -31,12 +31,12 @@ public class SysRoleUserServiceImpl extends BaseServiceImpl<SysRoleUserDao, SysR
         deleteByUserIds(new Long[]{userId});
 
         //用户没有一个角色权限的情况
-        if(CollUtil.isEmpty(roleIdList)){
-            return ;
+        if (CollUtil.isEmpty(roleIdList)) {
+            return;
         }
 
         //保存角色用户关系
-        for(Long roleId : roleIdList){
+        for (Long roleId : roleIdList) {
             SysRoleUserEntity sysRoleUserEntity = new SysRoleUserEntity();
             sysRoleUserEntity.setUserId(userId);
             sysRoleUserEntity.setRoleId(roleId);

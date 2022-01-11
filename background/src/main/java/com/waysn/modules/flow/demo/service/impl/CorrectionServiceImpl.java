@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.flow.demo.service.impl;
@@ -19,13 +19,13 @@ import java.util.Map;
 /**
  * 转正申请
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class CorrectionServiceImpl extends CrudServiceImpl<CorrectionDao, CorrectionEntity, CorrectionDTO> implements CorrectionService {
 
     @Override
-    public QueryWrapper<CorrectionEntity> getWrapper(Map<String, Object> params){
+    public QueryWrapper<CorrectionEntity> getWrapper(Map<String, Object> params) {
 
         return null;
     }

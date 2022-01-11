@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * 异常处理器
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @RestControllerAdvice
@@ -43,8 +43,8 @@ public class RenExceptionHandler {
 	/**
 	 * 处理自定义异常
 	 */
-	@ExceptionHandler(RenException.class)
-	public Result handleRenException(RenException ex){
+	@ExceptionHandler(ServicesException.class)
+	public Result handleRenException(ServicesException ex) {
 		Result result = new Result();
 		result.error(ex.getCode(), ex.getMsg());
 
@@ -52,7 +52,7 @@ public class RenExceptionHandler {
 	}
 
 	@ExceptionHandler(DuplicateKeyException.class)
-	public Result handleDuplicateKeyException(DuplicateKeyException ex){
+	public Result handleDuplicateKeyException(DuplicateKeyException ex) {
 		Result result = new Result();
 		result.error(ErrorCode.DB_RECORD_EXISTS);
 
@@ -60,7 +60,7 @@ public class RenExceptionHandler {
 	}
 
 	@ExceptionHandler(UnauthorizedException.class)
-	public Result handleUnauthorizedException(UnauthorizedException ex){
+	public Result handleUnauthorizedException(UnauthorizedException ex) {
 		Result result = new Result();
 		result.error(ErrorCode.FORBIDDEN);
 
@@ -69,7 +69,7 @@ public class RenExceptionHandler {
 
 
 	@ExceptionHandler(Exception.class)
-	public Result handleException(Exception ex){
+	public Result handleException(Exception ex) {
 		logger.error(ex.getMessage(), ex);
 
 		saveLog(ex);
@@ -80,7 +80,7 @@ public class RenExceptionHandler {
 	/**
 	 * 保存异常日志
 	 */
-	private void saveLog(Exception ex){
+	private void saveLog(Exception ex) {
 		SysLogErrorEntity log = new SysLogErrorEntity();
 
 		//请求相关信息
@@ -90,7 +90,7 @@ public class RenExceptionHandler {
 		log.setRequestUri(request.getRequestURI());
 		log.setRequestMethod(request.getMethod());
 		Map<String, String> params = HttpContextUtils.getParameterMap(request);
-		if(MapUtil.isNotEmpty(params)){
+		if (MapUtil.isNotEmpty(params)) {
 			log.setRequestParams(JSON.toJSONString(params));
 		}
 

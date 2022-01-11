@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 初始化定时任务数据
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Component
 public class JobCommandLineRunner implements CommandLineRunner {
@@ -33,12 +33,12 @@ public class JobCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) {
         List<ScheduleJobEntity> scheduleJobList = scheduleJobDao.selectList(null);
-        for(ScheduleJobEntity scheduleJob : scheduleJobList){
+        for (ScheduleJobEntity scheduleJob : scheduleJobList) {
             CronTrigger cronTrigger = ScheduleUtils.getCronTrigger(scheduler, scheduleJob.getId());
             //如果不存在，则创建
-            if(cronTrigger == null) {
+            if (cronTrigger == null) {
                 ScheduleUtils.createScheduleJob(scheduler, scheduleJob);
-            }else {
+            } else {
                 ScheduleUtils.updateScheduleJob(scheduler, scheduleJob);
             }
         }

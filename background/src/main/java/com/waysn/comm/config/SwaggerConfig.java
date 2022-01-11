@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -29,42 +29,42 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * Swagger配置
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Configuration
 @EnableSwagger2WebMvc
 @AllArgsConstructor
-public class SwaggerConfig{
+public class SwaggerConfig {
     private final OpenApiExtensionResolver openApiExtensionResolver;
 
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-            .apiInfo(apiInfo())
-            .select()
-            //加了ApiOperation注解的类，生成接口文档
-            .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-            //包下的类，生成接口文档
-            //.apis(RequestHandlerSelectors.basePackage("com.waysn.modules.job.controller"))
-            .paths(PathSelectors.any())
-            .build()
-            .extensions(openApiExtensionResolver.buildExtensions("waysn"))
-            .directModelSubstitute(java.util.Date.class, String.class)
-            .securitySchemes(security());
+                .apiInfo(apiInfo())
+                .select()
+                //加了ApiOperation注解的类，生成接口文档
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                //包下的类，生成接口文档
+                //.apis(RequestHandlerSelectors.basePackage("com.waysn.modules.job.controller"))
+                .paths(PathSelectors.any())
+                .build()
+                .extensions(openApiExtensionResolver.buildExtensions("waysn"))
+                .directModelSubstitute(java.util.Date.class, String.class)
+                .securitySchemes(security());
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("waysn")
-            .description("background模块接口文档")
-            .termsOfServiceUrl("")
-            .version("3.x")
-            .build();
+                .title("waysn")
+                .description("background模块接口文档")
+                .termsOfServiceUrl("")
+                .version("3.x")
+                .build();
     }
 
     private List<ApiKey> security() {
         return newArrayList(
-            new ApiKey(Constant.TOKEN_HEADER, Constant.TOKEN_HEADER, "header")
+                new ApiKey(Constant.TOKEN_HEADER, Constant.TOKEN_HEADER, "header")
         );
     }
 }

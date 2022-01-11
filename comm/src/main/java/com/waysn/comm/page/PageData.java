@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 分页工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 @ApiModel(value = "分页数据")
@@ -37,6 +37,6 @@ public class PageData<T> implements Serializable {
      */
     public PageData(List<T> list, long total) {
         this.list = list;
-        this.total = (int)total;
+        this.total = (int) total;
     }
 }

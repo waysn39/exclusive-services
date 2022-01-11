@@ -1,36 +1,39 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package com.waysn.modules.oss.cloud;
 
+import com.waysn.comm.exception.ErrorCode;
+import com.waysn.comm.exception.ServicesException;
 import io.minio.MinioClient;
 import io.minio.errors.InvalidEndpointException;
 import io.minio.errors.InvalidPortException;
-import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import io.minio.errors.MinioException;
+import io.minio.http.Method;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.nio.file.Path;
 
 /**
  * MinIO 存储
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class MinioCloudStorageService extends AbstractCloudStorageService {
     private MinioClient minioClient;
 
-    public MinioCloudStorageService(CloudStorageConfig config){
+    public MinioCloudStorageService(CloudStorageConfig config) {
         this.config = config;
         //初始化
         init();
     }
 
-    private void init(){
+    private void init() {
         try {
             minioClient = new MinioClient(config.getMinioEndPoint(), config.getMinioAccessKey(), config.getMinioSecretKey());
         } catch (InvalidEndpointException e) {
@@ -53,13 +56,11 @@ public class MinioCloudStorageService extends AbstractCloudStorageService {
             if (!found) {
                 minioClient.makeBucket(config.getMinioBucketName());
             }
-
             minioClient.putObject(config.getMinioBucketName(), path, inputStream, Long.valueOf(inputStream.available()),
                     null, null, "application/octet-stream");
         } catch (Exception e) {
-            throw new RenException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
+            throw new ServicesException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
         }
-
         return config.getMinioEndPoint() + "/" + config.getMinioBucketName() + "/" + path;
     }
 
@@ -71,5 +72,29 @@ public class MinioCloudStorageService extends AbstractCloudStorageService {
     @Override
     public String uploadSuffix(InputStream inputStream, String suffix) {
         return upload(inputStream, getPath(config.getMinioPrefix(), suffix));
+    }
+
+    public void upload(Path path, InputStream inputStream) {
+        try {
+            minioClient.putObject(config.getMinioBucketName(), path.toString(), inputStream, Long.valueOf(inputStream.available()), null, null, "application/octet-stream");
+        } catch (Exception exception) {
+            throw new ServicesException("Error while fetching files in Minio", exception);
+        }
+    }
+
+    public String getShareUrl(Path path) throws MinioException {
+        try {
+            return minioClient.getPresignedObjectUrl(Method.GET, config.getMinioBucketName(), path.toString(), 86400, null);
+        } catch (Exception var3) {
+            throw new ServicesException("Error while get the bucket object share url", var3);
+        }
+    }
+
+    public InputStream getDownloadFile(Path path) throws MinioException {
+        try {
+            return minioClient.getObject(config.getMinioBucketName(), path.toString());
+        } catch (Exception var3) {
+            throw new ServicesException("Error while get the bucket object share url", var3);
+        }
     }
 }

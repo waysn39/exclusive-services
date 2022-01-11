@@ -14,19 +14,19 @@ import java.util.Map;
 /**
  * 公众号账号管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class MpAccountServiceImpl extends CrudServiceImpl<MpAccountDao, MpAccountEntity, MpAccountDTO> implements MpAccountService {
 
     @Override
-    public QueryWrapper<MpAccountEntity> getWrapper(Map<String, Object> params){
+    public QueryWrapper<MpAccountEntity> getWrapper(Map<String, Object> params) {
         QueryWrapper<MpAccountEntity> wrapper = new QueryWrapper<>();
 
-        String name = (String)params.get("name");
+        String name = (String) params.get("name");
         wrapper.like(StringUtils.isNotBlank(name), "name", name);
 
-        String appId = (String)params.get("appId");
+        String appId = (String) params.get("appId");
         wrapper.like(StringUtils.isNotBlank(appId), "app_id", appId);
 
         return wrapper;

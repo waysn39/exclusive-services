@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.flow.service;
 
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.comm.page.PageData;
 import com.waysn.comm.utils.DateUtils;
 import com.waysn.comm.utils.PageUtils;
@@ -32,7 +32,7 @@ import java.util.zip.ZipInputStream;
 /**
  * 流程管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 @AllArgsConstructor
@@ -43,20 +43,20 @@ public class FlowProcessService {
      * 流程列表
      */
     public PageData<Map<String, Object>> page(Map<String, Object> params) {
-        String key = (String)params.get("key");
-        String processName = (String)params.get("processName");
-        boolean isLatestVersion = params.get("isLatestVersion")== null? false : (boolean)params.get("isLatestVersion");
+        String key = (String) params.get("key");
+        String processName = (String) params.get("processName");
+        boolean isLatestVersion = params.get("isLatestVersion") == null ? false : (boolean) params.get("isLatestVersion");
 
 
         ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery()
                 .orderByProcessDefinitionId().desc().orderByProcessDefinitionKey().desc();
-        if(isLatestVersion){
+        if (isLatestVersion) {
             processDefinitionQuery.latestVersion();
         }
-        if(StringUtils.isNotBlank(key)){
+        if (StringUtils.isNotBlank(key)) {
             processDefinitionQuery.processDefinitionKeyLike("%" + key + "%");
         }
-        if(StringUtils.isNotBlank(processName)){
+        if (StringUtils.isNotBlank(processName)) {
             processDefinitionQuery.processDefinitionNameLike("%" + processName + "%");
         }
 
@@ -67,7 +67,7 @@ public class FlowProcessService {
             objectList.add(processDefinitionConvert(processDefinition));
         }
 
-        return new PageData<>(objectList, (int)processDefinitionQuery.count());
+        return new PageData<>(objectList, (int) processDefinitionQuery.count());
     }
 
     /**
@@ -93,42 +93,46 @@ public class FlowProcessService {
 
     /**
      * 部署
+     *
      * @param file 文件
      */
     public void deploy(MultipartFile file) throws IOException {
         String fileName = file.getOriginalFilename();
         String extension = FilenameUtils.getExtension(fileName);
-        if("zip".equalsIgnoreCase(extension)) {
+        if ("zip".equalsIgnoreCase(extension)) {
             ZipInputStream zip = new ZipInputStream(file.getInputStream());
             repositoryService.createDeployment().addZipInputStream(zip).deploy();
-        }else if(fileName.indexOf("bpmn20.xml") != -1){
+        } else if (fileName.indexOf("bpmn20.xml") != -1) {
             repositoryService.createDeployment().addInputStream(fileName, file.getInputStream()).deploy();
-        }else if("bpmn".equalsIgnoreCase(extension)){
+        } else if ("bpmn".equalsIgnoreCase(extension)) {
             repositoryService.createDeployment().addInputStream(fileName, file.getInputStream()).deploy();
-        }else{
-            throw new RenException(ErrorCode.ACT_DEPLOY_FORMAT_ERROR);
+        } else {
+            throw new ServicesException(ErrorCode.ACT_DEPLOY_FORMAT_ERROR);
         }
     }
 
     /**
      * 激活流程
+     *
      * @param id 流程ID
      */
-    public void active(String id){
+    public void active(String id) {
         repositoryService.activateProcessDefinitionById(id, true, null);
     }
 
     /**
      * 挂起流程
+     *
      * @param id 流程ID
      */
-    public void suspend(String id){
+    public void suspend(String id) {
         repositoryService.suspendProcessDefinitionById(id, true, null);
     }
 
     /**
      * 获取资源文件
-     * @param deploymentId  部署ID
+     *
+     * @param deploymentId 部署ID
      * @param resourceName 资源名称
      */
     public InputStream getResourceAsStream(String deploymentId, String resourceName) {
@@ -137,9 +141,10 @@ public class FlowProcessService {
 
     /**
      * 删除部署
-     * @param deploymentId  部署ID
+     *
+     * @param deploymentId 部署ID
      */
-    public void deleteDeployment(String deploymentId){
+    public void deleteDeployment(String deploymentId) {
         repositoryService.deleteDeployment(deploymentId, true);
     }
 }

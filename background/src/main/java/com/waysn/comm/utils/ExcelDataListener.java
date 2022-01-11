@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Excel模板读取类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class ExcelDataListener<E, T> extends AnalysisEventListener<T> {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExcelDataListener.class);
@@ -61,6 +61,7 @@ public class ExcelDataListener<E, T> extends AnalysisEventListener<T> {
             list.clear();
         }
     }
+
     /**
      * 所有数据解析完成了 都会来调用
      */

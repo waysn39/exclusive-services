@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.notice.service;
@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Param;
 /**
  * 我的通知
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public interface SysNoticeUserService extends IService<SysNoticeUserEntity> {
 

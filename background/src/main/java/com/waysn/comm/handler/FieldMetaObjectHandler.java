@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -18,7 +18,7 @@ import java.util.Date;
 /**
  * 公共字段，自动填充值
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Component
 public class FieldMetaObjectHandler implements MetaObjectHandler {

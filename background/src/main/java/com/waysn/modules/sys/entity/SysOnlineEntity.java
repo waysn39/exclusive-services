@@ -16,7 +16,7 @@ import java.util.Date;
 /**
  * 在线用户
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 public class SysOnlineEntity implements Serializable {

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -31,11 +31,11 @@ import java.util.Map;
 /**
  * 字典数据
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @RestController
 @RequestMapping("sys/dict/data")
-@Api(tags="字典数据")
+@Api(tags = "字典数据")
 public class SysDictDataController {
     @Autowired
     private SysDictDataService sysDictDataService;
@@ -43,15 +43,15 @@ public class SysDictDataController {
     @GetMapping("page")
     @ApiOperation("字典数据")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType="int") ,
-        @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query",required = true, dataType="int") ,
-        @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType="String") ,
-        @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType="String") ,
-        @ApiImplicitParam(name = "dictLabel", value = "字典标签", paramType = "query", dataType="String"),
-        @ApiImplicitParam(name = "dictValue", value = "字典值", paramType = "query", dataType="String")
+            @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "dictLabel", value = "字典标签", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "dictValue", value = "字典值", paramType = "query", dataType = "String")
     })
     @RequiresPermissions("sys:dict:page")
-    public Result<PageData<SysDictDataDTO>> page(@ApiIgnore @RequestParam Map<String, Object> params){
+    public Result<PageData<SysDictDataDTO>> page(@ApiIgnore @RequestParam Map<String, Object> params) {
         //字典类型
         PageData<SysDictDataDTO> page = sysDictDataService.page(params);
 
@@ -61,7 +61,7 @@ public class SysDictDataController {
     @GetMapping("{id}")
     @ApiOperation("信息")
     @RequiresPermissions("sys:dict:info")
-    public Result<SysDictDataDTO> get(@PathVariable("id") Long id){
+    public Result<SysDictDataDTO> get(@PathVariable("id") Long id) {
         SysDictDataDTO data = sysDictDataService.get(id);
 
         return new Result<SysDictDataDTO>().ok(data);
@@ -71,7 +71,7 @@ public class SysDictDataController {
     @ApiOperation("保存")
     @LogOperation("保存")
     @RequiresPermissions("sys:dict:save")
-    public Result save(@RequestBody SysDictDataDTO dto){
+    public Result save(@RequestBody SysDictDataDTO dto) {
         //效验数据
         ValidatorUtils.validateEntity(dto, DefaultGroup.class);
 
@@ -84,7 +84,7 @@ public class SysDictDataController {
     @ApiOperation("修改")
     @LogOperation("修改")
     @RequiresPermissions("sys:dict:update")
-    public Result update(@RequestBody SysDictDataDTO dto){
+    public Result update(@RequestBody SysDictDataDTO dto) {
         //效验数据
         ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
 
@@ -97,7 +97,7 @@ public class SysDictDataController {
     @ApiOperation("删除")
     @LogOperation("删除")
     @RequiresPermissions("sys:dict:delete")
-    public Result delete(@RequestBody Long[] ids){
+    public Result delete(@RequestBody Long[] ids) {
         //效验数据
         AssertUtils.isArrayEmpty(ids, "id");
 

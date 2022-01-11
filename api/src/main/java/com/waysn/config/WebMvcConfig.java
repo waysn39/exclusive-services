@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -34,7 +34,7 @@ import java.util.TimeZone;
 /**
  * MVC配置
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {

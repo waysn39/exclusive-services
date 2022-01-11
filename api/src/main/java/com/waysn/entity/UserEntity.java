@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -17,8 +17,8 @@ import java.util.Date;
 
 /**
  * 用户
- * 
- * @author Mark sunlightcs@gmail.com
+ *
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 @TableName("tb_user")
@@ -41,7 +41,7 @@ public class UserEntity implements Serializable {
 	/**
 	 * 密码
 	 */
-	@JSONField(serialize=false)
+	@JSONField(serialize = false)
 	private String password;
 	/**
 	 * 创建时间

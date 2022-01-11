@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -16,34 +16,34 @@ import java.util.Date;
 /**
  * 行政区域
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 @TableName("sys_region")
 public class SysRegionEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * id
      */
-    @TableId(type =  IdType.INPUT)
-	private Long id;
+    @TableId(type = IdType.INPUT)
+    private Long id;
     /**
      * 上级ID，一级为0
      */
-	private Long pid;
+    private Long pid;
     /**
      * 名称
      */
-	private String name;
+    private String name;
     /**
      * 层级
      */
-	private Integer treeLevel;
+    private Integer treeLevel;
     /**
      * 排序
      */
-	private Long sort;
+    private Long sort;
     /**
      * 是否叶子节点  0：否   1：是
      */
@@ -52,7 +52,7 @@ public class SysRegionEntity implements Serializable {
      * 创建者
      */
     @TableField(fill = FieldFill.INSERT)
-    private Long  creator;
+    private Long creator;
     /**
      * 创建时间
      */

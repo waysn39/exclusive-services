@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * 覆盖原 flowable SecurityUtils
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class SecurityUtils {
     private static User assumeUser;

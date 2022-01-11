@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * 表
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class TableInfoServiceImpl extends BaseServiceImpl<TableInfoDao, TableInfoEntity> implements TableInfoService {
@@ -37,14 +37,14 @@ public class TableInfoServiceImpl extends BaseServiceImpl<TableInfoDao, TableInf
     @Override
     public PageData<TableInfoEntity> page(Map<String, Object> params) {
         IPage<TableInfoEntity> page = baseDao.selectPage(
-            getPage(params, Constant.CREATE_DATE, false),
-            getWrapper(params)
+                getPage(params, Constant.CREATE_DATE, false),
+                getWrapper(params)
         );
         return new PageData<>(page.getRecords(), page.getTotal());
     }
 
-    private QueryWrapper<TableInfoEntity> getWrapper(Map<String, Object> params){
-        String tableName = (String)params.get("tableName");
+    private QueryWrapper<TableInfoEntity> getWrapper(Map<String, Object> params) {
+        String tableName = (String) params.get("tableName");
 
         QueryWrapper<TableInfoEntity> wrapper = new QueryWrapper<>();
         wrapper.like(StringUtils.isNotEmpty(tableName), "table_name", tableName);

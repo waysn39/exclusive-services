@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -10,7 +10,7 @@ package com.waysn.modules.devtools.service.impl;
 import cn.hutool.core.io.FileUtil;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.waysn.comm.constant.Constant;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.comm.utils.DateUtils;
 import com.waysn.modules.devtools.config.DataSourceInfo;
 import com.waysn.modules.devtools.dao.GeneratorMenuDao;
@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 /**
  * 代码生成
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class GeneratorServiceImpl implements GeneratorService {
@@ -82,8 +82,8 @@ public class GeneratorServiceImpl implements GeneratorService {
 
         TableInfoEntity table = tableInfoService.getByTableName(tableInfo.getTableName());
         //表存在
-        if(table != null){
-            throw new RenException(tableInfo.getTableName() + "数据表已存在");
+        if (table != null) {
+            throw new ServicesException(tableInfo.getTableName() + "数据表已存在");
         }
 
         table = DbUtils.getTablesInfo(info, tableInfo.getTableName());
@@ -110,19 +110,19 @@ public class GeneratorServiceImpl implements GeneratorService {
         try {
             //释放数据源
             info.getConnection().close();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void updateTableField(Long tableId, List<TableFieldEntity> tableFieldList){
+    public void updateTableField(Long tableId, List<TableFieldEntity> tableFieldList) {
         //删除旧列信息
         tableFieldService.deleteBatchTableIds(new Long[]{tableId});
 
         //保存新列数据
         int sort = 0;
-        for(TableFieldEntity tableField : tableFieldList){
+        for (TableFieldEntity tableField : tableFieldList) {
             tableField.setSort(sort++);
             tableFieldService.insert(tableField);
         }
@@ -132,18 +132,18 @@ public class GeneratorServiceImpl implements GeneratorService {
     /**
      * 初始化列数据
      */
-    private void initFieldList(List<TableFieldEntity> tableFieldList){
+    private void initFieldList(List<TableFieldEntity> tableFieldList) {
         //字段类型、属性类型映射
         Map<String, FieldTypeEntity> fieldTypeMap = fieldTypeService.getMap();
         int index = 0;
-        for(TableFieldEntity tableField : tableFieldList){
+        for (TableFieldEntity tableField : tableFieldList) {
             tableField.setAttrName(StringUtils.uncapitalize(GenUtils.columnToJava(tableField.getColumnName())));
             //获取字段对应的类型
             FieldTypeEntity fieldTypeMapping = fieldTypeMap.get(tableField.getColumnType().toLowerCase());
-            if(fieldTypeMapping == null){
+            if (fieldTypeMapping == null) {
                 //没找到对应的类型，则为Object类型
                 tableField.setAttrType("Object");
-            }else {
+            } else {
                 tableField.setAttrType(fieldTypeMapping.getAttrType());
                 tableField.setPackageName(fieldTypeMapping.getPackageName());
             }
@@ -180,7 +180,7 @@ public class GeneratorServiceImpl implements GeneratorService {
         dataModel.put("moduleName", tableInfo.getModuleName());
 
         String subModuleName = tableInfo.getSubModuleName();
-        if(StringUtils.isBlank(subModuleName)){
+        if (StringUtils.isBlank(subModuleName)) {
             subModuleName = null;
         }
         dataModel.put("subModuleName", subModuleName);
@@ -200,8 +200,8 @@ public class GeneratorServiceImpl implements GeneratorService {
         dataModel.put("columnList", tableInfo.getFields());
 
         //主键
-        for(TableFieldEntity tableField : tableInfo.getFields()){
-            if(tableField.isPk()){
+        for (TableFieldEntity tableField : tableInfo.getFields()) {
+            if (tableField.isPk()) {
                 dataModel.put("pk", tableField);
                 break;
             }
@@ -214,7 +214,7 @@ public class GeneratorServiceImpl implements GeneratorService {
         dataModel.put("imports", imports);
 
         //基类
-        if(tableInfo.getBaseclassId() != null){
+        if (tableInfo.getBaseclassId() != null) {
             BaseClassEntity baseClassEntity = baseClassService.selectById(tableInfo.getBaseclassId());
             baseClassEntity.setPackageName(GenUtils.getTemplateContent(baseClassEntity.getPackageName(), dataModel));
             dataModel.put("baseClassEntity", baseClassEntity);
@@ -224,7 +224,7 @@ public class GeneratorServiceImpl implements GeneratorService {
         List<TemplateEntity> templateList = templateService.list();
 
         //渲染模板并输出
-        for(TemplateEntity template : templateList){
+        for (TemplateEntity template : templateList) {
             dataModel.put("templateName", template.getName());
             String content = GenUtils.getTemplateContent(template.getContent(), dataModel);
             String path = GenUtils.getTemplateContent(template.getPath(), dataModel) + File.separator +
@@ -248,7 +248,7 @@ public class GeneratorServiceImpl implements GeneratorService {
         //权限标识
         String permission = menu.getModuleName() + ":" + menu.getClassName().toLowerCase();
         //菜单id
-        Long menuId =  IdWorker.getId();
+        Long menuId = IdWorker.getId();
 
         //菜单
         params.put("id", menuId);

@@ -13,7 +13,7 @@ import com.waysn.modules.devtools.utils.DbType;
 /**
  * Query
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public interface AbstractQuery {
 

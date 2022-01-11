@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -9,7 +9,7 @@ package com.waysn.modules.oss.cloud;
 
 import com.aliyun.oss.OSSClient;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -17,11 +17,11 @@ import java.io.InputStream;
 /**
  * 阿里云存储
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class AliyunCloudStorageService extends AbstractCloudStorageService {
 
-    public AliyunCloudStorageService(CloudStorageConfig config){
+    public AliyunCloudStorageService(CloudStorageConfig config) {
         this.config = config;
     }
 
@@ -37,8 +37,8 @@ public class AliyunCloudStorageService extends AbstractCloudStorageService {
         try {
             client.putObject(config.getAliyunBucketName(), path, inputStream);
             client.shutdown();
-        } catch (Exception e){
-            throw new RenException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
+        } catch (Exception e) {
+            throw new ServicesException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
         }
 
         return config.getAliyunDomain() + "/" + path;

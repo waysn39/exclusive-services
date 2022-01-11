@@ -9,14 +9,14 @@ import org.springframework.context.annotation.ImportResource;
 /**
  * UReport 配置
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Configuration
 @ImportResource("classpath:ureport-console-context.xml")
 public class UReportConfig {
 
     @Bean
-    public ServletRegistrationBean<UReportServlet> buildUReportServlet(){
+    public ServletRegistrationBean<UReportServlet> buildUReportServlet() {
         return new ServletRegistrationBean<>(new UReportServlet(), "/ureport/*");
     }
 

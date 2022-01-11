@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -19,10 +19,10 @@ import java.util.List;
 /**
  * 流程设计器
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @RestController
-@Api(tags="流程设计器")
+@Api(tags = "流程设计器")
 public class FlowModelerController {
 
     @GetMapping("/flowable/rest/account")

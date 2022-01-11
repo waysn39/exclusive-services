@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * 多数据源测试
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -26,7 +26,7 @@ public class DynamicDataSourceTest {
     private DynamicDataSourceTestService dynamicDataSourceTestService;
 
     @Test
-    public void test(){
+    public void test() {
         Long id = 1067246875800000001L;
 
         dynamicDataSourceTestService.updateUser(id);

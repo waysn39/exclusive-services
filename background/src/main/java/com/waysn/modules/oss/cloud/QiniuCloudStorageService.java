@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,7 +13,7 @@ import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -22,20 +22,20 @@ import java.io.InputStream;
 /**
  * 七牛云存储
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class QiniuCloudStorageService extends AbstractCloudStorageService {
     private UploadManager uploadManager;
     private String token;
 
-    public QiniuCloudStorageService(CloudStorageConfig config){
+    public QiniuCloudStorageService(CloudStorageConfig config) {
         this.config = config;
 
         //初始化
         init();
     }
 
-    private void init(){
+    private void init() {
         uploadManager = new UploadManager(new Configuration(Region.autoRegion()));
         token = Auth.create(config.getQiniuAccessKey(), config.getQiniuSecretKey()).
                 uploadToken(config.getQiniuBucketName());
@@ -47,10 +47,10 @@ public class QiniuCloudStorageService extends AbstractCloudStorageService {
         try {
             Response res = uploadManager.put(data, path, token);
             if (!res.isOK()) {
-                throw new RenException(ErrorCode.OSS_UPLOAD_FILE_ERROR, res.toString());
+                throw new ServicesException(ErrorCode.OSS_UPLOAD_FILE_ERROR, res.toString());
             }
         } catch (Exception e) {
-            throw new RenException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
+            throw new ServicesException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
         }
 
         return config.getQiniuDomain() + "/" + path;
@@ -62,7 +62,7 @@ public class QiniuCloudStorageService extends AbstractCloudStorageService {
             byte[] data = IOUtils.toByteArray(inputStream);
             return this.upload(data, path);
         } catch (IOException e) {
-            throw new RenException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
+            throw new ServicesException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
         }
     }
 

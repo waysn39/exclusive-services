@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 树节点，所有需要实现树节点的，都需要继承该类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 public class TreeNode<T> implements Serializable {

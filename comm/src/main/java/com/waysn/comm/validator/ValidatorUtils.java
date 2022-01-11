@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package com.waysn.comm.validator;
 
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -23,7 +23,7 @@ import java.util.Set;
  * hibernate-validator校验工具类
  * 参考文档：http://docs.jboss.org/hibernate/validator/6.0/reference/en-US/html_single/
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 public class ValidatorUtils {
@@ -37,20 +37,21 @@ public class ValidatorUtils {
 
     /**
      * 校验对象
-     * @param object        待校验对象
-     * @param groups        待校验的组
+     *
+     * @param object 待校验对象
+     * @param groups 待校验的组
      */
     public static void validateEntity(Object object, Class<?>... groups)
-            throws RenException {
+            throws ServicesException {
         Locale.setDefault(LocaleContextHolder.getLocale());
         Validator validator = Validation.byDefaultProvider().configure().messageInterpolator(
-                new ResourceBundleMessageInterpolator(new MessageSourceResourceBundleLocator(getMessageSource())))
+                        new ResourceBundleMessageInterpolator(new MessageSourceResourceBundleLocator(getMessageSource())))
                 .buildValidatorFactory().getValidator();
 
         Set<ConstraintViolation<Object>> constraintViolations = validator.validate(object, groups);
         if (!constraintViolations.isEmpty()) {
-        	ConstraintViolation<Object> constraint = constraintViolations.iterator().next();
-            throw new RenException(constraint.getMessage());
+            ConstraintViolation<Object> constraint = constraintViolations.iterator().next();
+            throw new ServicesException(constraint.getMessage());
         }
     }
 }

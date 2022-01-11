@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * excel工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class ExcelUtils {
 
@@ -35,8 +35,8 @@ public class ExcelUtils {
      * @param pojoClass     对象Class
      */
     public static void exportExcel(HttpServletResponse response, String fileName, String sheetName, List<?> list,
-                                     Class<?> pojoClass) throws IOException {
-        if(StringUtils.isBlank(fileName)){
+                                   Class<?> pojoClass) throws IOException {
+        if (StringUtils.isBlank(fileName)) {
             //当前日期
             fileName = DateUtils.format(new Date());
         }
@@ -44,7 +44,7 @@ public class ExcelUtils {
         response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("UTF-8");
         fileName = URLEncoder.encode(fileName, "UTF-8");
-        response.setHeader("Content-disposition", "attachment;filename=" +  fileName + ".xlsx");
+        response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
         EasyExcel.write(response.getOutputStream(), pojoClass).sheet(sheetName).doWrite(list);
     }
 
@@ -58,9 +58,9 @@ public class ExcelUtils {
      * @param targetClass   目标对象Class
      */
     public static void exportExcelToTarget(HttpServletResponse response, String fileName, String sheetName, List<?> sourceList,
-                                     Class<?> targetClass) throws Exception {
+                                           Class<?> targetClass) throws Exception {
         List targetList = new ArrayList<>(sourceList.size());
-        for(Object source : sourceList){
+        for (Object source : sourceList) {
             Object target = targetClass.newInstance();
             BeanUtils.copyProperties(source, target);
             targetList.add(target);

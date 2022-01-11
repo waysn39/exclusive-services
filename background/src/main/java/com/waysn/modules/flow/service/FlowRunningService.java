@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.flow.service;
@@ -9,8 +9,8 @@ package com.waysn.modules.flow.service;
 import com.waysn.comm.page.PageData;
 import com.waysn.comm.utils.DateUtils;
 import com.waysn.comm.utils.PageUtils;
-import com.waysn.modules.security.user.SecurityUser;
 import com.waysn.modules.flow.dto.ProcessInstanceDTO;
+import com.waysn.modules.security.user.SecurityUser;
 import com.waysn.modules.sys.dto.SysUserDTO;
 import com.waysn.modules.sys.service.SysUserService;
 import lombok.AllArgsConstructor;
@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * 运行中的流程
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 @AllArgsConstructor
@@ -43,14 +43,14 @@ public class FlowRunningService {
      * 流程定义列表
      */
     public PageData<Map<String, Object>> page(Map<String, Object> params) {
-        String id = (String)params.get("id");
-        String definitionKey = (String)params.get("definitionKey");
+        String id = (String) params.get("id");
+        String definitionKey = (String) params.get("definitionKey");
 
         ProcessInstanceQuery processInstanceQuery = runtimeService.createProcessInstanceQuery();
-        if (StringUtils.isNotBlank(id)){
+        if (StringUtils.isNotBlank(id)) {
             processInstanceQuery.processInstanceId(id);
         }
-        if (StringUtils.isNotBlank(definitionKey)){
+        if (StringUtils.isNotBlank(definitionKey)) {
             processInstanceQuery.processDefinitionKey(definitionKey);
         }
 
@@ -59,7 +59,7 @@ public class FlowRunningService {
         for (ProcessInstance processInstance : processInstanceList) {
             objectList.add(processInstanceConvert(processInstance));
         }
-        return new PageData<>(objectList, (int)processInstanceQuery.count());
+        return new PageData<>(objectList, (int) processInstanceQuery.count());
     }
 
     /**
@@ -92,7 +92,7 @@ public class FlowRunningService {
      * 删除实例
      * @param id  实例ID
      */
-    public void delete(String id){
+    public void delete(String id) {
         runtimeService.deleteProcessInstance(id, null);
     }
 

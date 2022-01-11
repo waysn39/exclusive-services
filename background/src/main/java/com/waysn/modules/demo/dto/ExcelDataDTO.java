@@ -10,10 +10,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
-* Excel导入演示
-*
-* @author Mark sunlightcs@gmail.com
-*/
+ * Excel导入演示
+ *
+ * @author jinyiming waysn39@hotmail.com
+ */
 @Data
 @ApiModel(value = "Excel导入演示")
 public class ExcelDataDTO implements Serializable {
@@ -28,7 +28,7 @@ public class ExcelDataDTO implements Serializable {
     @ApiModelProperty(value = "家庭地址")
     private String address;
     @ApiModelProperty(value = "入学日期")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date joinDate;
     @ApiModelProperty(value = "班级名称")
     private String className;

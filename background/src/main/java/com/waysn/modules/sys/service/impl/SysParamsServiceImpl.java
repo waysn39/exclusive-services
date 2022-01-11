@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.waysn.comm.constant.Constant;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.comm.page.PageData;
 import com.waysn.comm.service.impl.BaseServiceImpl;
 import com.waysn.comm.utils.ConvertUtils;
@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * 参数管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Service
@@ -44,8 +44,8 @@ public class SysParamsServiceImpl extends BaseServiceImpl<SysParamsDao, SysParam
     @Override
     public PageData<SysParamsDTO> page(Map<String, Object> params) {
         IPage<SysParamsEntity> page = baseDao.selectPage(
-            getPage(params, Constant.CREATE_DATE, false),
-            getWrapper(params)
+                getPage(params, Constant.CREATE_DATE, false),
+                getWrapper(params)
         );
 
         return getPageData(page, SysParamsDTO.class);
@@ -58,7 +58,7 @@ public class SysParamsServiceImpl extends BaseServiceImpl<SysParamsDao, SysParam
         return ConvertUtils.sourceToTarget(entityList, SysParamsDTO.class);
     }
 
-    private QueryWrapper<SysParamsEntity> getWrapper(Map<String, Object> params){
+    private QueryWrapper<SysParamsEntity> getWrapper(Map<String, Object> params) {
         String paramCode = (String) params.get("paramCode");
 
         QueryWrapper<SysParamsEntity> wrapper = new QueryWrapper<>();
@@ -108,7 +108,7 @@ public class SysParamsServiceImpl extends BaseServiceImpl<SysParamsDao, SysParam
     @Override
     public String getValue(String paramCode) {
         String paramValue = sysParamsRedis.get(paramCode);
-        if(paramValue == null){
+        if (paramValue == null) {
             paramValue = baseDao.getValueByCode(paramCode);
 
             sysParamsRedis.set(paramCode, paramValue);
@@ -119,14 +119,14 @@ public class SysParamsServiceImpl extends BaseServiceImpl<SysParamsDao, SysParam
     @Override
     public <T> T getValueObject(String paramCode, Class<T> clazz) {
         String paramValue = getValue(paramCode);
-        if(StringUtils.isNotBlank(paramValue)){
+        if (StringUtils.isNotBlank(paramValue)) {
             return JSON.parseObject(paramValue, clazz);
         }
 
         try {
             return clazz.newInstance();
         } catch (Exception e) {
-            throw new RenException(ErrorCode.PARAMS_GET_ERROR);
+            throw new ServicesException(ErrorCode.PARAMS_GET_ERROR);
         }
     }
 

@@ -19,7 +19,7 @@ import java.util.Date;
 /**
  * 异常日志
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 @ContentRowHeight(20)

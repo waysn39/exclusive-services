@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 公众号素材
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 @ApiModel(value = "公众号素材")

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * 代码生成
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @RestController
 @RequestMapping("devtools")
@@ -43,14 +43,14 @@ public class GeneratorController {
     private SysDictTypeService sysDictTypeService;
 
     @GetMapping("table/page")
-    public Result<PageData<TableInfoEntity>> pageTable(@RequestParam Map<String, Object> params){
+    public Result<PageData<TableInfoEntity>> pageTable(@RequestParam Map<String, Object> params) {
         PageData<TableInfoEntity> page = tableInfoService.page(params);
 
         return new Result<PageData<TableInfoEntity>>().ok(page);
     }
 
     @GetMapping("table/{id}")
-    public Result<TableInfoEntity> getTable(@PathVariable("id") Long id){
+    public Result<TableInfoEntity> getTable(@PathVariable("id") Long id) {
         TableInfoEntity table = tableInfoService.selectById(id);
 
         List<TableFieldEntity> fieldList = tableFieldService.getByTableName(table.getTableName());
@@ -60,14 +60,14 @@ public class GeneratorController {
     }
 
     @PutMapping("table")
-    public Result updateTable(@RequestBody TableInfoEntity tableInfo){
+    public Result updateTable(@RequestBody TableInfoEntity tableInfo) {
         tableInfoService.updateById(tableInfo);
 
         return new Result();
     }
 
     @DeleteMapping("table")
-    public Result deleteTable(@RequestBody Long[] ids){
+    public Result deleteTable(@RequestBody Long[] ids) {
         tableInfoService.deleteBatchIds(ids);
 
         return new Result();
@@ -77,7 +77,7 @@ public class GeneratorController {
      * 获取数据源中所有表
      */
     @GetMapping("datasource/table/list/{id}")
-    public Result<List<TableInfoEntity>> getDataSourceTableList(@PathVariable("id") Long id){
+    public Result<List<TableInfoEntity>> getDataSourceTableList(@PathVariable("id") Long id) {
         try {
             //初始化配置信息
             DataSourceInfo info = generatorService.getDataSourceInfo(id);
@@ -111,7 +111,7 @@ public class GeneratorController {
     }
 
     @GetMapping("dict")
-    public Result<List<DictType>> dict(){
+    public Result<List<DictType>> dict() {
         List<DictType> list = sysDictTypeService.getDictTypeList();
 
         return new Result<List<DictType>>().ok(list);

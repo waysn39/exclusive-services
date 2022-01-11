@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.notice.dao;
@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* 通知管理
-*
-* @author Mark sunlightcs@gmail.com
-*/
+ * 通知管理
+ *
+ * @author jinyiming waysn39@hotmail.com
+ */
 @Mapper
 public interface SysNoticeDao extends BaseDao<SysNoticeEntity> {
     /**

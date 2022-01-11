@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * DB工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Slf4j
 public class DbUtils {
@@ -42,8 +42,8 @@ public class DbUtils {
         Class.forName(info.getDbType().getDriverClass());
 
         Connection connection = DriverManager.getConnection(info.getConnUrl(), info.getUsername(), info.getPassword());
-        if(info.getDbType() == DbType.Oracle){
-            ((OracleConnection)connection).setRemarksReporting(true);
+        if (info.getDbType() == DbType.Oracle) {
+            ((OracleConnection) connection).setRemarksReporting(true);
         }
 
         return connection;
@@ -68,7 +68,7 @@ public class DbUtils {
                 tableInfo.setDatasourceId(info.getId());
                 return tableInfo;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -96,7 +96,7 @@ public class DbUtils {
             }
 
             info.getConnection().close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -130,7 +130,7 @@ public class DbUtils {
                 field.setTableName(tableName);
                 field.setColumnName(rs.getString(dbQuery.fieldName()));
                 String columnType = rs.getString(dbQuery.fieldType());
-                if(columnType.indexOf(" ") != -1){
+                if (columnType.indexOf(" ") != -1) {
                     columnType = columnType.substring(0, columnType.indexOf(" "));
                 }
                 field.setColumnType(columnType);
@@ -140,7 +140,7 @@ public class DbUtils {
 
                 tableFieldList.add(field);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

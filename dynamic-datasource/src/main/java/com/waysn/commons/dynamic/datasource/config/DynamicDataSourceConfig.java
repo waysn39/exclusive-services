@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * 配置多数据源
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Configuration
@@ -49,7 +49,7 @@ public class DynamicDataSourceConfig {
         return dynamicDataSource;
     }
 
-    private Map<Object, Object> getDynamicDataSource(){
+    private Map<Object, Object> getDynamicDataSource() {
         Map<String, DataSourceProperties> dataSourcePropertiesMap = properties.getDatasource();
         Map<Object, Object> targetDataSources = new HashMap<>(dataSourcePropertiesMap.size());
         dataSourcePropertiesMap.forEach((k, v) -> {

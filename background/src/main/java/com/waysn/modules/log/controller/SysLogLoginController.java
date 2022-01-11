@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -35,12 +35,12 @@ import java.util.Map;
 /**
  * 登录日志
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @RestController
 @RequestMapping("sys/log/login")
-@Api(tags="登录日志")
+@Api(tags = "登录日志")
 public class SysLogLoginController {
     @Autowired
     private SysLogLoginService sysLogLoginService;
@@ -48,15 +48,15 @@ public class SysLogLoginController {
     @GetMapping("page")
     @ApiOperation("分页")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType="int") ,
-        @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query",required = true, dataType="int") ,
-        @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType="String") ,
-        @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType="String") ,
-        @ApiImplicitParam(name = "status", value = "状态  0：失败    1：成功    2：账号已锁定", paramType = "query", dataType="int"),
-        @ApiImplicitParam(name = "creatorName", value = "用户名", paramType = "query", dataType="String")
+            @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "status", value = "状态  0：失败    1：成功    2：账号已锁定", paramType = "query", dataType = "int"),
+            @ApiImplicitParam(name = "creatorName", value = "用户名", paramType = "query", dataType = "String")
     })
     @RequiresPermissions("sys:log:login")
-    public Result<PageData<SysLogLoginDTO>> page(@ApiIgnore @RequestParam Map<String, Object> params){
+    public Result<PageData<SysLogLoginDTO>> page(@ApiIgnore @RequestParam Map<String, Object> params) {
         PageData<SysLogLoginDTO> page = sysLogLoginService.page(params);
 
         return new Result<PageData<SysLogLoginDTO>>().ok(page);
@@ -66,8 +66,8 @@ public class SysLogLoginController {
     @ApiOperation("导出")
     @LogOperation("导出")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "status", value = "状态  0：失败    1：成功    2：账号已锁定", paramType = "query", dataType="int"),
-        @ApiImplicitParam(name = "creatorName", value = "用户名", paramType = "query", dataType="String")
+            @ApiImplicitParam(name = "status", value = "状态  0：失败    1：成功    2：账号已锁定", paramType = "query", dataType = "int"),
+            @ApiImplicitParam(name = "creatorName", value = "用户名", paramType = "query", dataType = "String")
     })
     @RequiresPermissions("sys:log:login")
     public void export(@ApiIgnore @RequestParam Map<String, Object> params, HttpServletResponse response) throws Exception {

@@ -10,10 +10,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
-* 公众号账号管理
-*
-* @author Mark sunlightcs@gmail.com
-*/
+ * 公众号账号管理
+ *
+ * @author jinyiming waysn39@hotmail.com
+ */
 @Data
 @ApiModel(value = "公众号账号管理")
 public class MpAccountDTO implements Serializable {

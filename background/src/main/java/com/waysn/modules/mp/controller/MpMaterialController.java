@@ -21,22 +21,22 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 公众号素材管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @AllArgsConstructor
 @RestController
 @RequestMapping("mp/material")
-@Api(tags="公众号素材管理")
+@Api(tags = "公众号素材管理")
 public class MpMaterialController {
     private final WxMpService wxService;
 
     @GetMapping("page")
     @ApiOperation("分页")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "appId", value = "appId", paramType = "query", required = true, dataType="String") ,
-        @ApiImplicitParam(name = "type", value = "可选值：news、voice、image、video", paramType = "query", required = true, dataType="String") ,
-        @ApiImplicitParam(name = "offset", value = "起始位置", paramType = "query", required = true, dataType="int") ,
-        @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query",required = true, dataType="int")
+            @ApiImplicitParam(name = "appId", value = "appId", paramType = "query", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "type", value = "可选值：news、voice、image、video", paramType = "query", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "offset", value = "起始位置", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query", required = true, dataType = "int")
     })
     public Result page(String appId, String type, int offset, int limit) throws Exception {
         if (!this.wxService.switchover(appId)) {
@@ -61,8 +61,8 @@ public class MpMaterialController {
     @GetMapping("get")
     @ApiOperation("获取永久素材")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "appId", value = "appId", paramType = "query", required = true, dataType="String") ,
-        @ApiImplicitParam(name = "mediaId", value = "素材ID", paramType = "query", required = true, dataType="String")
+            @ApiImplicitParam(name = "appId", value = "appId", paramType = "query", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "mediaId", value = "素材ID", paramType = "query", required = true, dataType = "String")
     })
     public Result get(String appId, String mediaId) throws Exception {
         if (!this.wxService.switchover(appId)) {

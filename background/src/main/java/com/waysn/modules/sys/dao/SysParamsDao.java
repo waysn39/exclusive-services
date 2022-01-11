@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 参数管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Mapper
@@ -25,14 +25,14 @@ public interface SysParamsDao extends BaseDao<SysParamsEntity> {
     /**
      * 根据参数编码，查询value
      * @param paramCode 参数编码
-     * @return          参数值
+     * @return 参数值
      */
     String getValueByCode(String paramCode);
 
     /**
      * 获取参数编码列表
      * @param ids  ids
-     * @return     返回参数编码列表
+     * @return 返回参数编码列表
      */
     List<String> getParamCodeList(Long[] ids);
 

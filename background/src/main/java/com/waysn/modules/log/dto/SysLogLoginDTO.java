@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -19,7 +19,7 @@ import java.util.Date;
 /**
  * 登录日志
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Data
@@ -27,26 +27,26 @@ import java.util.Date;
 public class SysLogLoginDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "id")
-	private Long id;
+    @ApiModelProperty(value = "id")
+    private Long id;
 
-	@ApiModelProperty(value = "用户操作  0：用户登录   1：用户退出")
-	private Integer operation;
+    @ApiModelProperty(value = "用户操作  0：用户登录   1：用户退出")
+    private Integer operation;
 
-	@ApiModelProperty(value = "状态  0：失败    1：成功    2：账号已锁定")
-	private Integer status;
+    @ApiModelProperty(value = "状态  0：失败    1：成功    2：账号已锁定")
+    private Integer status;
 
-	@ApiModelProperty(value = "用户代理")
-	private String userAgent;
+    @ApiModelProperty(value = "用户代理")
+    private String userAgent;
 
-	@ApiModelProperty(value = "操作IP")
-	private String ip;
+    @ApiModelProperty(value = "操作IP")
+    private String ip;
 
-	@ApiModelProperty(value = "用户名")
-	private String creatorName;
+    @ApiModelProperty(value = "用户名")
+    private String creatorName;
 
-	@ApiModelProperty(value = "创建时间")
-	@JsonFormat(pattern = DateUtils.DATE_TIME_PATTERN)
-	private Date createDate;
+    @ApiModelProperty(value = "创建时间")
+    @JsonFormat(pattern = DateUtils.DATE_TIME_PATTERN)
+    private Date createDate;
 
 }

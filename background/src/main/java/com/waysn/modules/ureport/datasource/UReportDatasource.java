@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -18,7 +18,7 @@ import java.sql.SQLException;
 /**
  * UReport默认数据源
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Component
 public class UReportDatasource implements BuildinDatasource {

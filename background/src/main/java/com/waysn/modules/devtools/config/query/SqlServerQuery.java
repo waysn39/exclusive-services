@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,7 +13,7 @@ import org.apache.commons.lang.StringUtils;
 /**
  * SqlServer查询
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class SqlServerQuery implements AbstractQuery {
 
@@ -29,7 +29,7 @@ public class SqlServerQuery implements AbstractQuery {
         sql.append("left JOIN sys.extended_properties sep on sep.major_id=so.id and sep.minor_id=0 where (xtype='U' or xtype='V') ");
 
         //表名查询
-        if(StringUtils.isNotBlank(tableName)){
+        if (StringUtils.isNotBlank(tableName)) {
             sql.append("and cast(so.name as varchar(500)) = '").append(tableName).append("' ");
         }
         sql.append(" order by cast(so.name as varchar(500))");

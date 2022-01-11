@@ -1,14 +1,14 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package com.waysn.modules.oss.cloud;
 
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import org.apache.commons.io.FileUtils;
 
 import java.io.ByteArrayInputStream;
@@ -19,11 +19,11 @@ import java.io.InputStream;
 /**
  * 本地上传
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class LocalCloudStorageService extends AbstractCloudStorageService {
 
-    public LocalCloudStorageService(CloudStorageConfig config){
+    public LocalCloudStorageService(CloudStorageConfig config) {
         this.config = config;
     }
 
@@ -38,7 +38,7 @@ public class LocalCloudStorageService extends AbstractCloudStorageService {
         try {
             FileUtils.copyToFile(inputStream, file);
         } catch (IOException e) {
-            throw new RenException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
+            throw new ServicesException(ErrorCode.OSS_UPLOAD_FILE_ERROR, e, "");
         }
         return config.getLocalDomain() + "/" + path;
     }

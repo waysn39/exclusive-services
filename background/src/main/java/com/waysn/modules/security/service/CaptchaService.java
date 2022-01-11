@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * 验证码
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public interface CaptchaService {
 
@@ -26,7 +26,7 @@ public interface CaptchaService {
      * 验证码效验
      * @param uuid  uuid
      * @param code  验证码
-     * @return  true：成功  false：失败
+     * @return true：成功  false：失败
      */
     boolean validate(String uuid, String code);
 }

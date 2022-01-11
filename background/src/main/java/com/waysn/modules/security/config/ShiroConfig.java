@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -27,13 +27,13 @@ import java.util.Map;
 /**
  * Shiro的配置文件
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Configuration
 public class ShiroConfig {
 
     @Bean
-    public DefaultWebSessionManager sessionManager(){
+    public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionValidationSchedulerEnabled(false);
         sessionManager.setSessionIdUrlRewritingEnabled(false);
@@ -77,7 +77,7 @@ public class ShiroConfig {
         filterMap.put("/ureport/**", "anon");
         filterMap.put("/pay/alipay/**", "anon");
         filterMap.put("/mp/portal/**", "anon");
-        filterMap.put("/open/**","anon");
+        filterMap.put("/open/**", "anon");
         filterMap.put("/**", "oauth2");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 

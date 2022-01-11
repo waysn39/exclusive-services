@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -21,22 +21,22 @@ import java.util.Map;
 /**
  * 支付宝回调日志
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class AlipayNotifyLogServiceImpl extends CrudServiceImpl<AlipayNotifyLogDao, AlipayNotifyLogEntity, AlipayNotifyLogDTO> implements AlipayNotifyLogService {
 
     @Override
-    public QueryWrapper<AlipayNotifyLogEntity> getWrapper(Map<String, Object> params){
+    public QueryWrapper<AlipayNotifyLogEntity> getWrapper(Map<String, Object> params) {
         QueryWrapper<AlipayNotifyLogEntity> wrapper = new QueryWrapper<>();
 
-        String outTradeNo = (String)params.get("outTradeNo");
+        String outTradeNo = (String) params.get("outTradeNo");
         wrapper.eq(StringUtils.isNotBlank(outTradeNo), "out_trade_no", outTradeNo);
 
-        String notifyId = (String)params.get("notifyId");
+        String notifyId = (String) params.get("notifyId");
         wrapper.eq(StringUtils.isNotBlank(notifyId), "notify_id", notifyId);
 
-        String tradeStatus = (String)params.get("tradeStatus");
+        String tradeStatus = (String) params.get("tradeStatus");
         wrapper.eq(StringUtils.isNotBlank(tradeStatus), "trade_status", tradeStatus);
 
         return wrapper;

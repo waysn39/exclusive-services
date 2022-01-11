@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.sys.service;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 用户岗位关系
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public interface SysUserPostService extends BaseService<SysUserPostEntity> {
 

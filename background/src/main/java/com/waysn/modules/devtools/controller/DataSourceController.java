@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * 数据源管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @RestController
 @RequestMapping("devtools/datasource")
@@ -32,28 +32,28 @@ public class DataSourceController {
     private DataSourceService datasourceService;
 
     @GetMapping("page")
-    public Result<PageData<DataSourceEntity>> page(@RequestParam Map<String, Object> params){
+    public Result<PageData<DataSourceEntity>> page(@RequestParam Map<String, Object> params) {
         PageData<DataSourceEntity> page = datasourceService.page(params);
 
         return new Result<PageData<DataSourceEntity>>().ok(page);
     }
 
     @GetMapping("list")
-    public Result<List<DataSourceEntity>> list(){
+    public Result<List<DataSourceEntity>> list() {
         List<DataSourceEntity> list = datasourceService.list();
 
         return new Result<List<DataSourceEntity>>().ok(list);
     }
 
     @GetMapping("{id}")
-    public Result<DataSourceEntity> get(@PathVariable("id") Long id){
+    public Result<DataSourceEntity> get(@PathVariable("id") Long id) {
         DataSourceEntity data = datasourceService.selectById(id);
 
         return new Result<DataSourceEntity>().ok(data);
     }
 
     @GetMapping("test/{id}")
-    public Result<String> test(@PathVariable("id") Long id){
+    public Result<String> test(@PathVariable("id") Long id) {
         try {
             DataSourceEntity entity = datasourceService.selectById(id);
 
@@ -66,21 +66,21 @@ public class DataSourceController {
     }
 
     @PostMapping
-    public Result save(@RequestBody DataSourceEntity entity){
+    public Result save(@RequestBody DataSourceEntity entity) {
         datasourceService.insert(entity);
 
         return new Result();
     }
 
     @PutMapping
-    public Result update(@RequestBody DataSourceEntity entity){
+    public Result update(@RequestBody DataSourceEntity entity) {
         datasourceService.updateById(entity);
 
         return new Result();
     }
 
     @DeleteMapping
-    public Result delete(@RequestBody Long[] ids){
+    public Result delete(@RequestBody Long[] ids) {
         datasourceService.deleteBatchIds(Arrays.asList(ids));
 
         return new Result();

@@ -1,21 +1,21 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package com.waysn.modules.message.email;
 
 import cn.hutool.core.map.MapUtil;
-import com.waysn.modules.message.service.SysMailLogService;
-import freemarker.template.Template;
 import com.waysn.comm.constant.Constant;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.modules.message.dao.SysMailTemplateDao;
 import com.waysn.modules.message.entity.SysMailTemplateEntity;
+import com.waysn.modules.message.service.SysMailLogService;
 import com.waysn.modules.sys.service.SysParamsService;
+import freemarker.template.Template;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +33,7 @@ import java.util.Properties;
 /**
  * 邮件工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Component
 public class EmailUtils {
@@ -45,7 +45,7 @@ public class EmailUtils {
     private SysMailTemplateDao sysMailTemplateDao;
     @Autowired
     private SysMailLogService sysMailLogService;
-    
+
     private final static String KEY = Constant.MAIL_CONFIG_KEY;
 
     private JavaMailSenderImpl createMailSender(EmailConfig config) {
@@ -64,16 +64,17 @@ public class EmailUtils {
 
     /**
      * 发送邮件
-     * @param templateId   模板ID
-     * @param to        收件人
-     * @param cc        抄送
-     * @param params   模板参数
+     *
+     * @param templateId 模板ID
+     * @param to         收件人
+     * @param cc         抄送
+     * @param params     模板参数
      * @return true：成功   false：失败
      */
     public boolean sendMail(Long templateId, String[] to, String[] cc, Map<String, Object> params) throws Exception {
         SysMailTemplateEntity template = sysMailTemplateDao.selectById(templateId);
-        if(template == null){
-            throw new RenException(ErrorCode.MAIL_TEMPLATE_NOT_EXISTS);
+        if (template == null) {
+            throw new ServicesException(ErrorCode.MAIL_TEMPLATE_NOT_EXISTS);
         }
 
         EmailConfig config = sysParamsService.getValueObject(KEY, EmailConfig.class);
@@ -87,7 +88,7 @@ public class EmailUtils {
         //收件人
         messageHelper.setTo(to);
         //抄送
-        if(cc != null && cc.length > 0){
+        if (cc != null && cc.length > 0) {
             messageHelper.setCc(cc);
         }
         //主题
@@ -101,7 +102,7 @@ public class EmailUtils {
         //发送邮件
         try {
             mailSender.send(mimeMessage);
-        }catch (Exception e){
+        } catch (Exception e) {
             status = Constant.FAIL;
             logger.error("send error", e);
         }
@@ -113,11 +114,12 @@ public class EmailUtils {
 
     /**
      * 获取Freemarker渲染后的内容
-     * @param content   模板内容
-     * @param params    参数
+     *
+     * @param content 模板内容
+     * @param params  参数
      */
     private String getFreemarkerContent(String content, Map<String, Object> params) throws Exception {
-        if(MapUtil.isEmpty(params)){
+        if (MapUtil.isEmpty(params)) {
             return content;
         }
 
@@ -137,10 +139,11 @@ public class EmailUtils {
 
     /**
      * 发送邮件
-     * @param to        收件人
-     * @param cc        抄送
-     * @param subject   主题
-     * @param content   邮件正文
+     *
+     * @param to      收件人
+     * @param cc      抄送
+     * @param subject 主题
+     * @param content 邮件正文
      * @return true：成功   false：失败
      */
     public boolean sendMail(String[] to, String[] cc, String subject, String content) throws Exception {
@@ -154,7 +157,7 @@ public class EmailUtils {
         //收件人
         messageHelper.setTo(to);
         //抄送
-        if(cc != null && cc.length > 0){
+        if (cc != null && cc.length > 0) {
             messageHelper.setCc(cc);
         }
         //主题
@@ -166,7 +169,7 @@ public class EmailUtils {
         //发送邮件
         try {
             mailSender.send(mimeMessage);
-        }catch (Exception e){
+        } catch (Exception e) {
             status = Constant.FAIL;
             logger.error("send error", e);
         }

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 /**
  * 参数管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Component
@@ -28,17 +28,17 @@ public class SysParamsRedis {
         redisUtils.hDel(key, paramCodes);
     }
 
-    public void set(String paramCode, String paramValue){
-        if(paramValue == null){
-            return ;
+    public void set(String paramCode, String paramValue) {
+        if (paramValue == null) {
+            return;
         }
         String key = RedisKeys.getSysParamsKey();
         redisUtils.hSet(key, paramCode, paramValue);
     }
 
-    public String get(String paramCode){
+    public String get(String paramCode) {
         String key = RedisKeys.getSysParamsKey();
-        return (String)redisUtils.hGet(key, paramCode);
+        return (String) redisUtils.hGet(key, paramCode);
     }
 
 }

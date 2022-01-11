@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -11,8 +11,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
-import com.waysn.comm.service.CrudService;
 import com.waysn.comm.page.PageData;
+import com.waysn.comm.service.CrudService;
 import com.waysn.comm.utils.ConvertUtils;
 import org.springframework.beans.BeanUtils;
 
@@ -23,19 +23,19 @@ import java.util.Map;
 /**
  *  CRUD基础服务类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public abstract class CrudServiceImpl<M extends BaseMapper<T>, T, D> extends BaseServiceImpl<M, T> implements CrudService<T, D> {
 
     protected Class<D> currentDtoClass() {
-        return (Class<D>)ReflectionKit.getSuperClassGenericType(getClass(), 2);
+        return (Class<D>) ReflectionKit.getSuperClassGenericType(getClass(), 2);
     }
 
     @Override
     public PageData<D> page(Map<String, Object> params) {
         IPage<T> page = baseDao.selectPage(
-            getPage(params, null, false),
-            getWrapper(params)
+                getPage(params, null, false),
+                getWrapper(params)
         );
 
         return getPageData(page, currentDtoClass());

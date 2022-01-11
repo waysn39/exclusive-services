@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 支付宝支付拦截器，需要在WebMvcConfig.class配置拦截路径[/pay/alipay/**]4
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class AliPayInterceptor implements HandlerInterceptor {
 

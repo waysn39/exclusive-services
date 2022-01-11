@@ -26,7 +26,7 @@ import java.util.Date;
 /**
  * 新闻管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 @ApiModel(value = "新闻管理")

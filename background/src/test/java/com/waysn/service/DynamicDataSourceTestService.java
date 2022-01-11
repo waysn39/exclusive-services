@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * 测试多数据源
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 //@DataSource("slave1")
@@ -26,7 +26,7 @@ public class DynamicDataSourceTestService {
     private SysUserDao sysUserDao;
 
     //@Transactional
-    public void updateUser(Long id){
+    public void updateUser(Long id) {
         SysUserEntity user = new SysUserEntity();
         user.setId(id);
         user.setMobile("13500000000");
@@ -36,7 +36,7 @@ public class DynamicDataSourceTestService {
 
     @DataSource("slave1")
     @Transactional
-    public void updateUserBySlave1(Long id){
+    public void updateUserBySlave1(Long id) {
         SysUserEntity user = new SysUserEntity();
         user.setId(id);
         user.setMobile("13500000001");

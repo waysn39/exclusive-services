@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.sys.service.impl;
@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * 岗位管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class SysPostServiceImpl extends CrudServiceImpl<SysPostDao, SysPostEntity, SysPostDTO> implements SysPostService {
@@ -34,17 +34,17 @@ public class SysPostServiceImpl extends CrudServiceImpl<SysPostDao, SysPostEntit
     private SysUserPostService sysUserPostService;
 
     @Override
-    public QueryWrapper<SysPostEntity> getWrapper(Map<String, Object> params){
+    public QueryWrapper<SysPostEntity> getWrapper(Map<String, Object> params) {
         QueryWrapper<SysPostEntity> wrapper = new QueryWrapper<>();
 
-        String postCode = (String)params.get("postCode");
+        String postCode = (String) params.get("postCode");
         wrapper.like(StringUtils.isNotBlank(postCode), "post_code", postCode);
 
-        String postName = (String)params.get("postName");
+        String postName = (String) params.get("postName");
         wrapper.like(StringUtils.isNotBlank(postName), "post_name", postName);
 
-        String status = (String)params.get("status");
-        if(StringUtils.isNotBlank(status)){
+        String status = (String) params.get("status");
+        if (StringUtils.isNotBlank(status)) {
             wrapper.eq("status", Integer.parseInt(status));
         }
 

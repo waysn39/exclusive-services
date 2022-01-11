@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.flow.service;
@@ -9,10 +9,10 @@ package com.waysn.modules.flow.service;
 import com.google.common.collect.Lists;
 import com.waysn.comm.page.PageData;
 import com.waysn.comm.utils.PageUtils;
-import com.waysn.modules.security.user.SecurityUser;
 import com.waysn.modules.flow.dto.HistoryDetailDTO;
 import com.waysn.modules.flow.dto.ProcessInstanceDTO;
 import com.waysn.modules.flow.dto.TaskDTO;
+import com.waysn.modules.security.user.SecurityUser;
 import com.waysn.modules.sys.dto.SysUserDTO;
 import com.waysn.modules.sys.service.SysUserService;
 import lombok.AllArgsConstructor;
@@ -47,7 +47,7 @@ import static org.flowable.task.api.DelegationState.PENDING;
 /**
  *
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 @AllArgsConstructor
@@ -68,11 +68,11 @@ public class FlowService {
         //我的申请列表
         HistoricProcessInstanceQuery query = historyService.createHistoricProcessInstanceQuery().
                 startedBy(SecurityUser.getUserId().toString()).orderByProcessInstanceStartTime().desc();
-        if (StringUtils.isNotBlank((String)params.get("processDefinitionName"))){
-            query.processDefinitionName((String)params.get("processDefinitionName"));
+        if (StringUtils.isNotBlank((String) params.get("processDefinitionName"))) {
+            query.processDefinitionName((String) params.get("processDefinitionName"));
         }
 
-        List<HistoricProcessInstance> historicList =  query.listPage(PageUtils.getPageOffset(params), PageUtils.getPageLimit(params));
+        List<HistoricProcessInstance> historicList = query.listPage(PageUtils.getPageOffset(params), PageUtils.getPageLimit(params));
         historicList.forEach(historic -> {
             ProcessInstanceDTO dto = new ProcessInstanceDTO();
             dto.setProcessDefinitionId(historic.getProcessDefinitionId());
@@ -80,7 +80,7 @@ public class FlowService {
             dto.setProcessDefinitionVersion(historic.getProcessDefinitionVersion());
             dto.setProcessDefinitionName(historic.getProcessDefinitionName());
             dto.setProcessDefinitionKey(historic.getProcessDefinitionKey());
-            if(historic.getEndActivityId() != null){
+            if (historic.getEndActivityId() != null) {
                 dto.setEnded(true);
             } else {
                 dto.setEnded(false);
@@ -111,7 +111,7 @@ public class FlowService {
 
         HistoricTaskInstanceQuery query = historyService.createHistoricTaskInstanceQuery().taskAssignee(SecurityUser.getUserId().toString()).finished()
                 .includeProcessVariables().orderByHistoricTaskInstanceEndTime().desc();
-        if (StringUtils.isNotBlank((String)params.get("processDefinitionName"))){
+        if (StringUtils.isNotBlank((String) params.get("processDefinitionName"))) {
             query.processDefinitionNameLike("%" + params.get("processDefinitionName") + "%");
         }
         //已办任务列表
@@ -131,7 +131,7 @@ public class FlowService {
             dto.setProcessDefinitionName(instance.getProcessDefinitionName());
             dto.setProcessDefinitionVersion(instance.getProcessDefinitionVersion());
             SysUserDTO user = sysUserService.get(Long.parseLong(instance.getStartUserId()));
-            if(user != null){
+            if (user != null) {
                 dto.setStartUserName(user.getUsername());
             }
 
@@ -147,7 +147,7 @@ public class FlowService {
     public PageData<TaskDTO> todoPage(Map<String, Object> params) {
         //待办任务列表
         TaskQuery query = taskService.createTaskQuery().taskAssignee(SecurityUser.getUserId().toString()).active();
-        if (StringUtils.isNotBlank((String)params.get("definitionName"))){
+        if (StringUtils.isNotBlank((String) params.get("definitionName"))) {
             query.processDefinitionNameLike("%" + params.get("definitionName") + "%");
         }
         query.orderByTaskCreateTime().desc();
@@ -169,12 +169,12 @@ public class FlowService {
             dto.setProcessDefinitionName(processDefinition.getName());
             dto.setProcessDefinitionKey(processDefinition.getKey());
 
-            HistoricProcessInstance processInstance =  historyService.createHistoricProcessInstanceQuery().processInstanceId(task.getProcessInstanceId()).singleResult();
+            HistoricProcessInstance processInstance = historyService.createHistoricProcessInstanceQuery().processInstanceId(task.getProcessInstanceId()).singleResult();
             dto.setStartTime(processInstance.getStartTime());
             dto.setBusinessKey(processInstance.getBusinessKey());
 
             SysUserDTO user = sysUserService.get(Long.parseLong(processInstance.getStartUserId()));
-            if(user != null){
+            if (user != null) {
                 dto.setStartUserName(user.getUsername());
             }
 
@@ -185,7 +185,7 @@ public class FlowService {
     }
 
     public void diagramImage(String processInstanceId, HttpServletResponse response) throws Exception {
-        if (StringUtils.isBlank(processInstanceId)){
+        if (StringUtils.isBlank(processInstanceId)) {
             return;
         }
 
@@ -221,7 +221,7 @@ public class FlowService {
         InputStream in = diagramGenerator.generateDiagram(bpmnModel, "png", activityIds, flowList, engConf.getActivityFontName(),
                 engConf.getLabelFontName(), engConf.getAnnotationFontName(), engConf.getClassLoader(), 1.0, true);
 
-        response.setHeader("Content-Type","image/png");
+        response.setHeader("Content-Type", "image/png");
         response.setHeader("Cache-Control", "no-store, no-cache");
         IOUtils.copy(in, response.getOutputStream());
     }
@@ -232,13 +232,13 @@ public class FlowService {
      * @param processInstanceId 流程实例ID
      */
     public List<HistoryDetailDTO> historicTaskList(String processInstanceId) {
-        List<HistoryDetailDTO> actList = Lists.newArrayList ();
+        List<HistoryDetailDTO> actList = Lists.newArrayList();
 
         List<HistoricActivityInstance> historicActivityInstanceList = historyService.createHistoricActivityInstanceQuery().processInstanceId(processInstanceId)
                 .orderByHistoricActivityInstanceStartTime().asc().orderByHistoricActivityInstanceEndTime().asc().list();
 
         for (HistoricActivityInstance instance : historicActivityInstanceList) {
-            if (instance.getEndTime () != null) {
+            if (instance.getEndTime() != null) {
                 //显示开始节点和结束节点，并且执行人不为空的任务
                 if (StringUtils.isNotBlank(instance.getAssignee())
                         || BpmnXMLConstants.ELEMENT_EVENT_START.equals(instance.getActivityType())
@@ -309,7 +309,7 @@ public class FlowService {
         Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
 
         //添加意见
-        if(StringUtils.isNotBlank(comment)){
+        if (StringUtils.isNotBlank(comment)) {
             taskService.addComment(taskId, task.getProcessInstanceId(), comment);
         }
 
@@ -319,11 +319,11 @@ public class FlowService {
 
         //是否存在委托任务
         if (StringUtils.isNotBlank(task.getOwner())) {
-            if(task.getDelegationState().equals(PENDING)){
+            if (task.getDelegationState().equals(PENDING)) {
                 //被委托的流程，需要先resolved，才能提交任务
                 taskService.resolveTask(taskId);
             }
-        } else if(StringUtils.isBlank(task.getAssignee())) {
+        } else if (StringUtils.isBlank(task.getAssignee())) {
             //未签收，则先签收任务
             taskService.claim(taskId, SecurityUser.getUserId().toString());
         }

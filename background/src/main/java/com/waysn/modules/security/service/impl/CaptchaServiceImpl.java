@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -9,11 +9,11 @@ package com.waysn.modules.security.service.impl;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.waysn.comm.redis.RedisKeys;
+import com.waysn.comm.redis.RedisUtils;
 import com.waysn.modules.security.service.CaptchaService;
 import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.base.Captcha;
-import com.waysn.comm.redis.RedisKeys;
-import com.waysn.comm.redis.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 验证码
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class CaptchaServiceImpl implements CaptchaService {
@@ -61,28 +61,28 @@ public class CaptchaServiceImpl implements CaptchaService {
         String captcha = getCache(uuid);
 
         //效验成功
-        if(code.equalsIgnoreCase(captcha)){
+        if (code.equalsIgnoreCase(captcha)) {
             return true;
         }
 
         return false;
     }
 
-    private void setCache(String key, String value){
-        if(open){
+    private void setCache(String key, String value) {
+        if (open) {
             key = RedisKeys.getCaptchaKey(key);
             redisUtils.set(key, value, 300);
-        }else{
+        } else {
             localCache.put(key, value);
         }
     }
 
-    private String getCache(String key){
-        if(open){
+    private String getCache(String key) {
+        if (open) {
             key = RedisKeys.getCaptchaKey(key);
-            String captcha = (String)redisUtils.get(key);
+            String captcha = (String) redisUtils.get(key);
             //删除验证码
-            if(captcha != null){
+            if (captcha != null) {
                 redisUtils.delete(key);
             }
 
@@ -91,7 +91,7 @@ public class CaptchaServiceImpl implements CaptchaService {
 
         String captcha = localCache.getIfPresent(key);
         //删除验证码
-        if(captcha != null){
+        if (captcha != null) {
             localCache.invalidate(key);
         }
         return captcha;

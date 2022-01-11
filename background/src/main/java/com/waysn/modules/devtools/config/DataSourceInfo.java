@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -19,7 +19,7 @@ import java.sql.SQLException;
 /**
  * 数据源信息
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 public class DataSourceInfo {
@@ -55,19 +55,19 @@ public class DataSourceInfo {
         this.username = entity.getUsername();
         this.password = entity.getPassword();
 
-        if(dbType == DbType.MySQL) {
+        if (dbType == DbType.MySQL) {
             this.dbQuery = new MySqlQuery();
-        }else if(dbType == DbType.Oracle) {
+        } else if (dbType == DbType.Oracle) {
             this.dbQuery = new OracleQuery();
-        }else if(dbType == DbType.SQLServer) {
+        } else if (dbType == DbType.SQLServer) {
             this.dbQuery = new SqlServerQuery();
-        }else if(dbType == DbType.PostgreSQL) {
+        } else if (dbType == DbType.PostgreSQL) {
             this.dbQuery = new PostgreSqlQuery();
         }
 
         try {
             this.connection = DbUtils.getConnection(this);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -76,13 +76,13 @@ public class DataSourceInfo {
         this.id = 0L;
         this.dbType = DbType.valueOf(connection.getMetaData().getDatabaseProductName());
 
-        if(dbType == DbType.MySQL) {
+        if (dbType == DbType.MySQL) {
             this.dbQuery = new MySqlQuery();
-        }else if(dbType == DbType.Oracle) {
+        } else if (dbType == DbType.Oracle) {
             this.dbQuery = new OracleQuery();
-        }else if(dbType == DbType.SQLServer) {
+        } else if (dbType == DbType.SQLServer) {
             this.dbQuery = new SqlServerQuery();
-        }else if(dbType == DbType.PostgreSQL) {
+        } else if (dbType == DbType.PostgreSQL) {
             this.dbQuery = new PostgreSqlQuery();
         }
 

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.sys.service.impl;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 用户岗位关系
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class SysUserPostServiceImpl extends BaseServiceImpl<SysUserPostDao, SysUserPostEntity> implements SysUserPostService {
@@ -29,12 +29,12 @@ public class SysUserPostServiceImpl extends BaseServiceImpl<SysUserPostDao, SysU
         deleteByUserIds(new Long[]{userId});
 
         //用户没有一个岗位权限的情况
-        if(CollUtil.isEmpty(postIdList)){
-            return ;
+        if (CollUtil.isEmpty(postIdList)) {
+            return;
         }
 
         //保存角色用户关系
-        for(Long postId : postIdList){
+        for (Long postId : postIdList) {
             SysUserPostEntity sysUserPostEntity = new SysUserPostEntity();
             sysUserPostEntity.setUserId(userId);
             sysUserPostEntity.setPostId(postId);

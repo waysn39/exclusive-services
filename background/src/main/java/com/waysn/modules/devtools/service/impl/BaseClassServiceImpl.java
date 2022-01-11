@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * 基类管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class BaseClassServiceImpl extends BaseServiceImpl<BaseClassDao, BaseClassEntity> implements BaseClassService {
@@ -32,8 +32,8 @@ public class BaseClassServiceImpl extends BaseServiceImpl<BaseClassDao, BaseClas
     @Override
     public PageData<BaseClassEntity> page(Map<String, Object> params) {
         IPage<BaseClassEntity> page = baseDao.selectPage(
-            getPage(params, Constant.CREATE_DATE, false),
-            getWrapper(params)
+                getPage(params, Constant.CREATE_DATE, false),
+                getWrapper(params)
         );
         return new PageData<>(page.getRecords(), page.getTotal());
     }
@@ -43,8 +43,8 @@ public class BaseClassServiceImpl extends BaseServiceImpl<BaseClassDao, BaseClas
         return baseDao.selectList(null);
     }
 
-    private QueryWrapper<BaseClassEntity> getWrapper(Map<String, Object> params){
-        String code = (String)params.get("code");
+    private QueryWrapper<BaseClassEntity> getWrapper(Map<String, Object> params) {
+        String code = (String) params.get("code");
 
         QueryWrapper<BaseClassEntity> wrapper = new QueryWrapper<>();
         wrapper.like(StringUtils.isNotEmpty(code), "code", code);

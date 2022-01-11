@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,10 +13,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 短信
- * 
- * @author Mark sunlightcs@gmail.com
+ *
+ * @author jinyiming waysn39@hotmail.com
  */
 @Mapper
 public interface SysSmsDao extends BaseDao<SysSmsEntity> {
-	
+
 }

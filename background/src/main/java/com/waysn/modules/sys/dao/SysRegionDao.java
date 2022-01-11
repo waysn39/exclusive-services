@@ -10,19 +10,19 @@ import java.util.Map;
 /**
  * 行政区域
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Mapper
 public interface SysRegionDao extends BaseDao<SysRegionEntity> {
 
-	List<SysRegionEntity> getList(Map<String, Object> params);
+    List<SysRegionEntity> getList(Map<String, Object> params);
 
-	List<SysRegionEntity> getListByLevel(Integer treeLevel);
+    List<SysRegionEntity> getListByLevel(Integer treeLevel);
 
-	List<Map<String, Object>> getTreeList();
+    List<Map<String, Object>> getTreeList();
 
-	SysRegionEntity getById(Long id);
+    SysRegionEntity getById(Long id);
 
-	int getCountByPid(Long pid);
+    int getCountByPid(Long pid);
 
 }

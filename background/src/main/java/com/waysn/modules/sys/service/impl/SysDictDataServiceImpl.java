@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * 字典类型
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class SysDictDataServiceImpl extends BaseServiceImpl<SysDictDataDao, SysDictDataEntity> implements SysDictDataService {
@@ -34,14 +34,14 @@ public class SysDictDataServiceImpl extends BaseServiceImpl<SysDictDataDao, SysD
     @Override
     public PageData<SysDictDataDTO> page(Map<String, Object> params) {
         IPage<SysDictDataEntity> page = baseDao.selectPage(
-            getPage(params, "sort", true),
-            getWrapper(params)
+                getPage(params, "sort", true),
+                getWrapper(params)
         );
 
         return getPageData(page, SysDictDataDTO.class);
     }
 
-    private QueryWrapper<SysDictDataEntity> getWrapper(Map<String, Object> params){
+    private QueryWrapper<SysDictDataEntity> getWrapper(Map<String, Object> params) {
         String dictTypeId = (String) params.get("dictTypeId");
         String dictLabel = (String) params.get("dictLabel");
         String dictValue = (String) params.get("dictValue");

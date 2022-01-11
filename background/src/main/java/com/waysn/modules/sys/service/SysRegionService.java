@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -17,24 +17,24 @@ import java.util.Map;
 
 /**
  * 行政区域
- * 
- * @author Mark sunlightcs@gmail.com
+ *
+ * @author jinyiming waysn39@hotmail.com
  */
 public interface SysRegionService extends BaseService<SysRegionEntity> {
 
-	List<SysRegionDTO> list(Map<String, Object> params);
+    List<SysRegionDTO> list(Map<String, Object> params);
 
-	List<Map<String, Object>> getTreeList();
+    List<Map<String, Object>> getTreeList();
 
-	SysRegionDTO get(Long id);
+    SysRegionDTO get(Long id);
 
-	void save(SysRegionDTO dto);
+    void save(SysRegionDTO dto);
 
-	void update(SysRegionDTO dto);
+    void update(SysRegionDTO dto);
 
-	void delete(Long id);
+    void delete(Long id);
 
-	int getCountByPid(Long pid);
+    int getCountByPid(Long pid);
 
-	List<RegionProvince> getRegion(boolean threeLevel);
+    List<RegionProvince> getRegion(boolean threeLevel);
 }

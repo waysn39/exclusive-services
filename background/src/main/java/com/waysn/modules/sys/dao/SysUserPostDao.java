@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.sys.dao;
@@ -13,10 +13,10 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
-* 用户岗位关系
-*
-* @author Mark sunlightcs@gmail.com
-*/
+ * 用户岗位关系
+ *
+ * @author jinyiming waysn39@hotmail.com
+ */
 @Mapper
 public interface SysUserPostDao extends BaseDao<SysUserPostEntity> {
 

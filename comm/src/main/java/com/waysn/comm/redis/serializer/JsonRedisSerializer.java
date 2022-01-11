@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -18,10 +18,11 @@ import org.springframework.data.redis.serializer.SerializationException;
 /**
  * Redis序列化
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class JsonRedisSerializer<T> implements RedisSerializer<T> {
     private static ParserConfig defaultRedisConfig = new ParserConfig();
+
     static {
         defaultRedisConfig.setAutoTypeSupport(true);
     }

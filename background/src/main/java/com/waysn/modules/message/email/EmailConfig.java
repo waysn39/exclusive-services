@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -17,26 +17,26 @@ import java.io.Serializable;
 /**
  * 邮件配置信息
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @ApiModel(value = "邮件配置信息")
 public class EmailConfig implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "SMTP")
-    @NotBlank(message="{email.smtp.require}")
+    @NotBlank(message = "{email.smtp.require}")
     private String smtp;
 
     @ApiModelProperty(value = "端口号")
-    @NotNull(message="{email.port.require}")
+    @NotNull(message = "{email.port.require}")
     private Integer port;
 
     @ApiModelProperty(value = "邮箱账号")
-    @NotBlank(message="{email.username.require}")
+    @NotBlank(message = "{email.username.require}")
     private String username;
 
     @ApiModelProperty(value = "邮箱密码")
-    @NotBlank(message="{email.password.require}")
+    @NotBlank(message = "{email.password.require}")
     private String password;
 
     public String getSmtp() {

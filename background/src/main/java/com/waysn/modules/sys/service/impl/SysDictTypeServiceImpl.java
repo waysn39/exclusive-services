@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -31,23 +31,24 @@ import java.util.Map;
 /**
  * 字典类型
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class SysDictTypeServiceImpl extends BaseServiceImpl<SysDictTypeDao, SysDictTypeEntity> implements SysDictTypeService {
     @Autowired
     private SysDictDataDao sysDictDataDao;
+
     @Override
     public PageData<SysDictTypeDTO> page(Map<String, Object> params) {
         IPage<SysDictTypeEntity> page = baseDao.selectPage(
-            getPage(params, "sort", true),
-            getWrapper(params)
+                getPage(params, "sort", true),
+                getWrapper(params)
         );
 
         return getPageData(page, SysDictTypeDTO.class);
     }
 
-    private QueryWrapper<SysDictTypeEntity> getWrapper(Map<String, Object> params){
+    private QueryWrapper<SysDictTypeEntity> getWrapper(Map<String, Object> params) {
         String dictType = (String) params.get("dictType");
         String dictName = (String) params.get("dictName");
 
@@ -92,9 +93,9 @@ public class SysDictTypeServiceImpl extends BaseServiceImpl<SysDictTypeDao, SysD
     public List<DictType> getAllList() {
         List<DictType> typeList = baseDao.getDictTypeList();
         List<DictData> dataList = sysDictDataDao.getDictDataList();
-        for(DictType type : typeList){
-            for(DictData data : dataList){
-                if(type.getId().equals(data.getDictTypeId())){
+        for (DictType type : typeList) {
+            for (DictData data : dataList) {
+                if (type.getId().equals(data.getDictTypeId())) {
                     type.getDataList().add(data);
                 }
             }

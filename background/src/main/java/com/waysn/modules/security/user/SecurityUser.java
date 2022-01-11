@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,14 +13,14 @@ import org.apache.shiro.subject.Subject;
 /**
  * 用户
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class SecurityUser {
 
     public static Subject getSubject() {
         try {
             return SecurityUtils.getSubject();
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -30,12 +30,12 @@ public class SecurityUser {
      */
     public static UserDetail getUser() {
         Subject subject = getSubject();
-        if(subject == null){
+        if (subject == null) {
             return new UserDetail();
         }
 
-        UserDetail user = (UserDetail)subject.getPrincipal();
-        if(user == null){
+        UserDetail user = (UserDetail) subject.getPrincipal();
+        if (user == null) {
             return new UserDetail();
         }
 

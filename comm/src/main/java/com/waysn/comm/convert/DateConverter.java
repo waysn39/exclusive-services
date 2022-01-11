@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -22,12 +22,13 @@ import java.util.List;
 /**
  * 日期转换
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Component
 public class DateConverter implements Converter<String, Date> {
     private static final Logger logger = LoggerFactory.getLogger(DateConverter.class);
     private static List<String> formatList = new ArrayList<>(5);
+
     static {
         formatList.add("yyyy-MM");
         formatList.add("yyyy-MM-dd");
@@ -43,15 +44,15 @@ public class DateConverter implements Converter<String, Date> {
             return null;
         }
 
-        if(source.matches("^\\d{4}-\\d{1,2}$")){
+        if (source.matches("^\\d{4}-\\d{1,2}$")) {
             return parseDate(source, formatList.get(0));
-        }else if(source.matches("^\\d{4}-\\d{1,2}-\\d{1,2}$")){
+        } else if (source.matches("^\\d{4}-\\d{1,2}-\\d{1,2}$")) {
             return parseDate(source, formatList.get(1));
-        }else if(source.matches("^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}$")){
+        } else if (source.matches("^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}$")) {
             return parseDate(source, formatList.get(2));
-        }else if(source.matches("^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}:\\d{1,2}$")){
+        } else if (source.matches("^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}:\\d{1,2}$")) {
             return parseDate(source, formatList.get(3));
-        }else if(source.matches("^\\d{4}-\\d{1,2}-\\d{1,2}.*T.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*..*$")){
+        } else if (source.matches("^\\d{4}-\\d{1,2}-\\d{1,2}.*T.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*..*$")) {
             return parseDate(source, formatList.get(4));
         } else {
             throw new IllegalArgumentException("Invalid boolean value '" + source + "'");

@@ -14,7 +14,7 @@ import org.apache.commons.lang.StringUtils;
 /**
  * Oracle查询
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class OracleQuery implements AbstractQuery {
 

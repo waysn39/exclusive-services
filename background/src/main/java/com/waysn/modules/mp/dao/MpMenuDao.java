@@ -5,11 +5,11 @@ import com.waysn.modules.mp.entity.MpMenuEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
-* 公众号自定义菜单
-*
-* @author Mark sunlightcs@gmail.com
-*/
+ * 公众号自定义菜单
+ *
+ * @author jinyiming waysn39@hotmail.com
+ */
 @Mapper
 public interface MpMenuDao extends BaseDao<MpMenuEntity> {
-	
+
 }

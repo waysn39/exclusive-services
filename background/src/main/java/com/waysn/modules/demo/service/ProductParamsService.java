@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 产品参数管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public interface ProductParamsService extends BaseService<ProductParamsEntity> {
 

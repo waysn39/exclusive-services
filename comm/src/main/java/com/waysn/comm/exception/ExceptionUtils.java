@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -14,32 +14,32 @@ import java.io.StringWriter;
 /**
  * Exception工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class ExceptionUtils {
 
     /**
      * 获取异常信息
      * @param ex  异常
-     * @return    返回异常信息
+     * @return 返回异常信息
      */
-    public static String getErrorStackTrace(Exception ex){
+    public static String getErrorStackTrace(Exception ex) {
         StringWriter sw = null;
         PrintWriter pw = null;
         try {
             sw = new StringWriter();
             pw = new PrintWriter(sw, true);
             ex.printStackTrace(pw);
-        }finally {
+        } finally {
             try {
-                if(pw != null) {
+                if (pw != null) {
                     pw.close();
                 }
             } catch (Exception e) {
 
             }
             try {
-                if(sw != null) {
+                if (sw != null) {
                     sw.close();
                 }
             } catch (IOException e) {

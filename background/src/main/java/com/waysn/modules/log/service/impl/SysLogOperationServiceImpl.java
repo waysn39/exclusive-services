@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,10 +13,10 @@ import com.waysn.comm.constant.Constant;
 import com.waysn.comm.page.PageData;
 import com.waysn.comm.service.impl.BaseServiceImpl;
 import com.waysn.comm.utils.ConvertUtils;
-import com.waysn.modules.log.service.SysLogOperationService;
 import com.waysn.modules.log.dao.SysLogOperationDao;
 import com.waysn.modules.log.dto.SysLogOperationDTO;
 import com.waysn.modules.log.entity.SysLogOperationEntity;
+import com.waysn.modules.log.service.SysLogOperationService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * 操作日志
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Service
@@ -36,8 +36,8 @@ public class SysLogOperationServiceImpl extends BaseServiceImpl<SysLogOperationD
     @Override
     public PageData<SysLogOperationDTO> page(Map<String, Object> params) {
         IPage<SysLogOperationEntity> page = baseDao.selectPage(
-            getPage(params, Constant.CREATE_DATE, false),
-            getWrapper(params)
+                getPage(params, Constant.CREATE_DATE, false),
+                getWrapper(params)
         );
 
         return getPageData(page, SysLogOperationDTO.class);
@@ -50,7 +50,7 @@ public class SysLogOperationServiceImpl extends BaseServiceImpl<SysLogOperationD
         return ConvertUtils.sourceToTarget(entityList, SysLogOperationDTO.class);
     }
 
-    private QueryWrapper<SysLogOperationEntity> getWrapper(Map<String, Object> params){
+    private QueryWrapper<SysLogOperationEntity> getWrapper(Map<String, Object> params) {
         String status = (String) params.get("status");
 
         QueryWrapper<SysLogOperationEntity> wrapper = new QueryWrapper<>();

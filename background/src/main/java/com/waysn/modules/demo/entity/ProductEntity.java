@@ -12,30 +12,30 @@ import java.util.Date;
 /**
  * 产品管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @TableName("tb_product")
 public class ProductEntity extends BaseEntity {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 产品名称
      */
-	private String name;
+    private String name;
     /**
      * 产品介绍
      */
-	private String content;
+    private String content;
     /**
      * 更新者
      */
-	@TableField(fill = FieldFill.INSERT_UPDATE)
-	private Long updater;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Long updater;
     /**
      * 更新时间
      */
-	@TableField(fill = FieldFill.INSERT_UPDATE)
-	private Date updateDate;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateDate;
 }

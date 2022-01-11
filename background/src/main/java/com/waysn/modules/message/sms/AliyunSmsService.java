@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -19,7 +19,7 @@ import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import com.waysn.comm.constant.Constant;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.comm.utils.SpringContextUtils;
 import com.waysn.modules.message.service.SysSmsLogService;
 
@@ -28,7 +28,7 @@ import java.util.LinkedHashMap;
 /**
  * 阿里云短信服务
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class AliyunSmsService extends AbstractSmsService {
     /**
@@ -43,14 +43,14 @@ public class AliyunSmsService extends AbstractSmsService {
     private IClientProfile profile;
 
 
-    public AliyunSmsService(SmsConfig config){
+    public AliyunSmsService(SmsConfig config) {
         this.config = config;
 
         //初始化
         init();
     }
 
-    private void init(){
+    private void init() {
         try {
             //初始化acsClient，暂不支持region化
             profile = DefaultProfile.getProfile("cn-hangzhou", config.getAliyunAccessKeyId(), config.getAliyunAccessKeySecret());
@@ -81,7 +81,7 @@ public class AliyunSmsService extends AbstractSmsService {
         //短信模板-可在短信控制台中找到
         request.setTemplateCode(template);
         //参数
-        if(MapUtil.isNotEmpty(params)){
+        if (MapUtil.isNotEmpty(params)) {
             request.setTemplateParam(JSON.toJSONString(params));
         }
 
@@ -90,11 +90,11 @@ public class AliyunSmsService extends AbstractSmsService {
             IAcsClient acsClient = new DefaultAcsClient(profile);
             response = acsClient.getAcsResponse(request);
         } catch (ClientException e) {
-            throw new RenException(ErrorCode.SEND_SMS_ERROR, e, "");
+            throw new ServicesException(ErrorCode.SEND_SMS_ERROR, e, "");
         }
 
         int status = Constant.SUCCESS;
-        if(!Constant.OK.equalsIgnoreCase(response.getCode())){
+        if (!Constant.OK.equalsIgnoreCase(response.getCode())) {
             status = Constant.FAIL;
         }
 
@@ -102,8 +102,8 @@ public class AliyunSmsService extends AbstractSmsService {
         SysSmsLogService sysSmsLogService = SpringContextUtils.getBean(SysSmsLogService.class);
         sysSmsLogService.save(smsCode, Constant.SmsService.ALIYUN.getValue(), mobile, params, status);
 
-        if(status == Constant.FAIL){
-            throw new RenException(ErrorCode.SEND_SMS_ERROR, response.getMessage());
+        if (status == Constant.FAIL) {
+            throw new ServicesException(ErrorCode.SEND_SMS_ERROR, response.getMessage());
         }
     }
 }

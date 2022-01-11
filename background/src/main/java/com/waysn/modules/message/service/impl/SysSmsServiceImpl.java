@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.message.service.impl;
@@ -9,13 +9,13 @@ package com.waysn.modules.message.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.comm.service.impl.CrudServiceImpl;
 import com.waysn.comm.utils.ConvertUtils;
-import com.waysn.modules.message.service.SysSmsService;
 import com.waysn.modules.message.dao.SysSmsDao;
 import com.waysn.modules.message.dto.SysSmsDTO;
 import com.waysn.modules.message.entity.SysSmsEntity;
+import com.waysn.modules.message.service.SysSmsService;
 import com.waysn.modules.message.sms.AbstractSmsService;
 import com.waysn.modules.message.sms.SmsConfig;
 import com.waysn.modules.message.sms.SmsFactory;
@@ -29,8 +29,8 @@ import java.util.Map;
 public class SysSmsServiceImpl extends CrudServiceImpl<SysSmsDao, SysSmsEntity, SysSmsDTO> implements SysSmsService {
 
     @Override
-    public QueryWrapper<SysSmsEntity> getWrapper(Map<String, Object> params){
-        String platform = (String)params.get("platform");
+    public QueryWrapper<SysSmsEntity> getWrapper(Map<String, Object> params) {
+        String platform = (String) params.get("platform");
 
         QueryWrapper<SysSmsEntity> wrapper = new QueryWrapper<>();
         wrapper.eq(StringUtils.isNotBlank(platform), "platform", platform);
@@ -53,14 +53,14 @@ public class SysSmsServiceImpl extends CrudServiceImpl<SysSmsDao, SysSmsEntity, 
         LinkedHashMap<String, String> map;
         try {
             map = JSON.parseObject(params, LinkedHashMap.class);
-        }catch (Exception e){
-            throw new RenException(ErrorCode.JSON_FORMAT_ERROR);
+        } catch (Exception e) {
+            throw new ServicesException(ErrorCode.JSON_FORMAT_ERROR);
         }
 
         //短信服务
         AbstractSmsService service = SmsFactory.build(smsCode);
-        if(service == null){
-            throw new RenException(ErrorCode.SMS_CONFIG);
+        if (service == null) {
+            throw new ServicesException(ErrorCode.SMS_CONFIG);
         }
 
         //发送短信

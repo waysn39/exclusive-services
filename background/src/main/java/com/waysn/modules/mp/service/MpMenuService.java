@@ -7,7 +7,7 @@ import com.waysn.modules.mp.entity.MpMenuEntity;
 /**
  * 公众号自定义菜单
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public interface MpMenuService extends CrudService<MpMenuEntity, MpMenuDTO> {
 

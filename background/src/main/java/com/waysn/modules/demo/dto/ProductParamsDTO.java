@@ -10,16 +10,16 @@ import java.io.Serializable;
 /**
  * 产品参数管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 @ApiModel(value = "产品参数管理")
 public class ProductParamsDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "参数名")
-	private String paramName;
+    @ApiModelProperty(value = "参数名")
+    private String paramName;
 
-	@ApiModelProperty(value = "参数值")
-	private String paramValue;
+    @ApiModelProperty(value = "参数值")
+    private String paramValue;
 }

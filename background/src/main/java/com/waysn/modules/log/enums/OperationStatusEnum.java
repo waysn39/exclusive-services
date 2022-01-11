@@ -10,7 +10,7 @@ package com.waysn.modules.log.enums;
 /**
  * 操作状态枚举
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 public enum OperationStatusEnum {

@@ -10,7 +10,7 @@ package com.waysn.modules.security.password;
 /**
  * 密码工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 public class PasswordUtils {

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * 树形结构工具类，如：菜单、部门等
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 public class TreeUtils {
@@ -30,7 +30,7 @@ public class TreeUtils {
         AssertUtils.isNull(pid, "pid");
 
         List<T> treeList = new ArrayList<>();
-        for(T treeNode : treeNodes) {
+        for (T treeNode : treeNodes) {
             if (pid.equals(treeNode.getPid())) {
                 treeList.add(findChildren(treeNodes, treeNode));
             }
@@ -43,8 +43,8 @@ public class TreeUtils {
      * 查找子节点
      */
     private static <T extends TreeNode> T findChildren(List<T> treeNodes, T rootNode) {
-        for(T treeNode : treeNodes) {
-            if(rootNode.getId().equals(treeNode.getPid())) {
+        for (T treeNode : treeNodes) {
+            if (rootNode.getId().equals(treeNode.getPid())) {
                 rootNode.getChildren().add(findChildren(treeNodes, treeNode));
             }
         }
@@ -59,13 +59,13 @@ public class TreeUtils {
 
         //list转map
         Map<Long, T> nodeMap = new LinkedHashMap<>(treeNodes.size());
-        for(T treeNode : treeNodes){
+        for (T treeNode : treeNodes) {
             nodeMap.put(treeNode.getId(), treeNode);
         }
 
-        for(T node : nodeMap.values()) {
+        for (T node : nodeMap.values()) {
             T parent = nodeMap.get(node.getPid());
-            if(parent != null && !(node.getId().equals(parent.getId()))){
+            if (parent != null && !(node.getId().equals(parent.getId()))) {
                 parent.getChildren().add(node);
                 continue;
             }

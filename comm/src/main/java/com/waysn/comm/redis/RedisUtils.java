@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Redis工具类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Component
 public class RedisUtils {
@@ -35,20 +35,20 @@ public class RedisUtils {
     /**  不设置过期时长 */
     public final static long NOT_EXPIRE = -1L;
 
-    public void set(String key, Object value, long expire){
+    public void set(String key, Object value, long expire) {
         redisTemplate.opsForValue().set(key, value);
-        if(expire != NOT_EXPIRE){
+        if (expire != NOT_EXPIRE) {
             expire(key, expire);
         }
     }
 
-    public void set(String key, Object value){
+    public void set(String key, Object value) {
         set(key, value, DEFAULT_EXPIRE);
     }
 
     public Object get(String key, long expire) {
         Object value = redisTemplate.opsForValue().get(key);
-        if(expire != NOT_EXPIRE){
+        if (expire != NOT_EXPIRE) {
             expire(key, expire);
         }
         return value;
@@ -70,19 +70,19 @@ public class RedisUtils {
         return redisTemplate.opsForHash().get(key, field);
     }
 
-    public Map<String, Object> hGetAll(String key){
+    public Map<String, Object> hGetAll(String key) {
         HashOperations<String, String, Object> hashOperations = redisTemplate.opsForHash();
         return hashOperations.entries(key);
     }
 
-    public void hMSet(String key, Map<String, Object> map){
+    public void hMSet(String key, Map<String, Object> map) {
         hMSet(key, map, DEFAULT_EXPIRE);
     }
 
-    public void hMSet(String key, Map<String, Object> map, long expire){
+    public void hMSet(String key, Map<String, Object> map, long expire) {
         redisTemplate.opsForHash().putAll(key, map);
 
-        if(expire != NOT_EXPIRE){
+        if (expire != NOT_EXPIRE) {
             expire(key, expire);
         }
     }
@@ -94,32 +94,32 @@ public class RedisUtils {
     public void hSet(String key, String field, Object value, long expire) {
         redisTemplate.opsForHash().put(key, field, value);
 
-        if(expire != NOT_EXPIRE){
+        if (expire != NOT_EXPIRE) {
             expire(key, expire);
         }
     }
 
-    public void expire(String key, long expire){
+    public void expire(String key, long expire) {
         redisTemplate.expire(key, expire, TimeUnit.SECONDS);
     }
 
-    public void hDel(String key, Object... fields){
+    public void hDel(String key, Object... fields) {
         redisTemplate.opsForHash().delete(key, fields);
     }
 
-    public void leftPush(String key, Object value){
+    public void leftPush(String key, Object value) {
         leftPush(key, value, DEFAULT_EXPIRE);
     }
 
-    public void leftPush(String key, Object value, long expire){
+    public void leftPush(String key, Object value, long expire) {
         redisTemplate.opsForList().leftPush(key, value);
 
-        if(expire != NOT_EXPIRE){
+        if (expire != NOT_EXPIRE) {
             expire(key, expire);
         }
     }
 
-    public Object rightPop(String key){
+    public Object rightPop(String key) {
         return redisTemplate.opsForList().rightPop(key);
     }
 }

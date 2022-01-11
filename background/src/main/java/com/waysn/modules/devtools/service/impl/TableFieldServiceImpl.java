@@ -1,16 +1,16 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package com.waysn.modules.devtools.service.impl;
 
 import com.waysn.comm.service.impl.BaseServiceImpl;
-import com.waysn.modules.devtools.service.TableFieldService;
 import com.waysn.modules.devtools.dao.TableFieldDao;
 import com.waysn.modules.devtools.entity.TableFieldEntity;
+import com.waysn.modules.devtools.service.TableFieldService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * 表
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class TableFieldServiceImpl extends BaseServiceImpl<TableFieldDao, TableFieldEntity> implements TableFieldService {

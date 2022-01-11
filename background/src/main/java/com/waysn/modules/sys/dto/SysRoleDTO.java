@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * 角色管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Data
@@ -35,27 +35,27 @@ import java.util.List;
 public class SysRoleDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "id")
-	@Null(message="{id.null}", groups = AddGroup.class)
-	@NotNull(message="{id.require}", groups = UpdateGroup.class)
-	private Long id;
+    @ApiModelProperty(value = "id")
+    @Null(message = "{id.null}", groups = AddGroup.class)
+    @NotNull(message = "{id.require}", groups = UpdateGroup.class)
+    private Long id;
 
-	@ApiModelProperty(value = "角色名称")
-	@NotBlank(message="{sysrole.name.require}", groups = DefaultGroup.class)
-	private String name;
+    @ApiModelProperty(value = "角色名称")
+    @NotBlank(message = "{sysrole.name.require}", groups = DefaultGroup.class)
+    private String name;
 
-	@ApiModelProperty(value = "备注")
-	private String remark;
+    @ApiModelProperty(value = "备注")
+    private String remark;
 
-	@ApiModelProperty(value = "创建时间")
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	@JsonFormat(pattern = DateUtils.DATE_TIME_PATTERN)
-	private Date createDate;
+    @ApiModelProperty(value = "创建时间")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonFormat(pattern = DateUtils.DATE_TIME_PATTERN)
+    private Date createDate;
 
-	@ApiModelProperty(value = "菜单ID列表")
-	private List<Long> menuIdList;
+    @ApiModelProperty(value = "菜单ID列表")
+    private List<Long> menuIdList;
 
-	@ApiModelProperty(value = "部门ID列表")
-	private List<Long> deptIdList;
+    @ApiModelProperty(value = "部门ID列表")
+    private List<Long> deptIdList;
 
 }

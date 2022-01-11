@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 /**
  * 系统数据
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Data

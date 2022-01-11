@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
 /**
  * 操作日志，切面处理类
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Aspect
 @Component
@@ -57,7 +57,7 @@ public class LogOperationAspect {
             saveLog(point, time, OperationStatusEnum.SUCCESS.value());
 
             return result;
-        }catch(Exception e) {
+        } catch (Exception e) {
             //执行时长(毫秒)
             long time = System.currentTimeMillis() - beginTime;
             //保存日志
@@ -73,19 +73,19 @@ public class LogOperationAspect {
         LogOperation annotation = method.getAnnotation(LogOperation.class);
 
         SysLogOperationEntity log = new SysLogOperationEntity();
-        if(annotation != null){
+        if (annotation != null) {
             //注解上的描述
             log.setOperation(annotation.value());
         }
 
         //登录用户信息
         UserDetail user = SecurityUser.getUser();
-        if(user != null){
+        if (user != null) {
             log.setCreatorName(user.getUsername());
         }
 
         log.setStatus(status);
-        log.setRequestTime((int)time);
+        log.setRequestTime((int) time);
 
         //请求相关信息
         HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
@@ -96,10 +96,10 @@ public class LogOperationAspect {
 
         //请求参数
         Object[] args = joinPoint.getArgs();
-        try{
+        try {
             String params = JSON.toJSONString(args[0]);
             log.setRequestParams(params);
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 

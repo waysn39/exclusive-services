@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * 角色数据权限
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  * @since 1.0.0
  */
 @Service
@@ -39,12 +39,12 @@ public class SysRoleDataScopeServiceImpl extends BaseServiceImpl<SysRoleDataScop
         deleteByRoleIds(new Long[]{roleId});
 
         //角色没有一个数据权限的情况
-        if(CollUtil.isEmpty(deptIdList)){
-            return ;
+        if (CollUtil.isEmpty(deptIdList)) {
+            return;
         }
 
         //保存角色数据权限关系
-        for(Long deptId : deptIdList){
+        for (Long deptId : deptIdList) {
             SysRoleDataScopeEntity sysRoleDataScopeEntity = new SysRoleDataScopeEntity();
             sysRoleDataScopeEntity.setDeptId(deptId);
             sysRoleDataScopeEntity.setRoleId(roleId);

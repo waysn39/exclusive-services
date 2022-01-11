@@ -8,10 +8,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
-* 公众号自定义菜单
-*
-* @author Mark sunlightcs@gmail.com
-*/
+ * 公众号自定义菜单
+ *
+ * @author jinyiming waysn39@hotmail.com
+ */
 @Data
 @ApiModel(value = "公众号自定义菜单")
 public class MpMenuDTO implements Serializable {

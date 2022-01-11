@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -10,7 +10,7 @@ package com.waysn.modules.message.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.comm.service.impl.CrudServiceImpl;
 import com.waysn.modules.message.dao.SysMailTemplateDao;
 import com.waysn.modules.message.dto.SysMailTemplateDTO;
@@ -30,7 +30,7 @@ public class SysMailTemplateServiceImpl extends CrudServiceImpl<SysMailTemplateD
 
     @Override
     public QueryWrapper<SysMailTemplateEntity> getWrapper(Map<String, Object> params) {
-        String name = (String)params.get("name");
+        String name = (String) params.get("name");
 
         QueryWrapper<SysMailTemplateEntity> wrapper = new QueryWrapper<>();
         wrapper.like(StringUtils.isNotBlank(name), "name", name);
@@ -39,14 +39,14 @@ public class SysMailTemplateServiceImpl extends CrudServiceImpl<SysMailTemplateD
     }
 
     @Override
-    public boolean sendMail(Long id, String mailTo, String mailCc, String params) throws Exception{
+    public boolean sendMail(Long id, String mailTo, String mailCc, String params) throws Exception {
         Map<String, Object> map = null;
         try {
-            if(StringUtils.isNotEmpty(params)){
+            if (StringUtils.isNotEmpty(params)) {
                 map = JSON.parseObject(params, Map.class);
             }
-        }catch (Exception e){
-            throw new RenException(ErrorCode.JSON_FORMAT_ERROR);
+        } catch (Exception e) {
+            throw new ServicesException(ErrorCode.JSON_FORMAT_ERROR);
         }
         String[] to = new String[]{mailTo};
         String[] cc = StringUtils.isBlank(mailCc) ? null : new String[]{mailCc};

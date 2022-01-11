@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.devtools.entity;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 /**
  * 代码生成参数配置
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 public class GenParam implements Serializable {

@@ -1,23 +1,22 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package com.waysn.modules.sys.service.impl;
 
 import com.waysn.comm.service.impl.BaseServiceImpl;
-import org.springframework.stereotype.Service;
-
 import com.waysn.modules.sys.dao.SysLanguageDao;
 import com.waysn.modules.sys.entity.SysLanguageEntity;
 import com.waysn.modules.sys.service.SysLanguageService;
+import org.springframework.stereotype.Service;
 
 /**
  * 国际化
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Service
 public class SysLanguageServiceImpl extends BaseServiceImpl<SysLanguageDao, SysLanguageEntity> implements SysLanguageService {
@@ -32,9 +31,9 @@ public class SysLanguageServiceImpl extends BaseServiceImpl<SysLanguageDao, SysL
         entity.setLanguage(language);
 
         //判断是否有数据
-        if(baseDao.getLanguage(entity) == null){
+        if (baseDao.getLanguage(entity) == null) {
             baseDao.insert(entity);
-        }else {
+        } else {
             baseDao.updateLanguage(entity);
         }
     }

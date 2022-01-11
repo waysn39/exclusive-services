@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.sys.dto;
@@ -16,10 +16,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
-* 岗位管理
-*
-* @author Mark sunlightcs@gmail.com
-*/
+ * 岗位管理
+ *
+ * @author jinyiming waysn39@hotmail.com
+ */
 @Data
 @ApiModel(value = "岗位管理")
 public class SysPostDTO implements Serializable {

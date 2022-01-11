@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.waysn.modules.sys.dao.AttachmentDao">
+
+    <resultMap type="com.waysn.modules.sys.entity.AttachmentEntity" id="attachmentMap">
+        <result property="id" column="id"/>
+        <result property="creator" column="creator"/>
+        <result property="createDate" column="create_date"/>
+        <result property="attachName" column="attach_name"/>
+        <result property="attachPath" column="attach_path"/>
+        <result property="attachLength" column="attach_length"/>
+        <result property="attachExt" column="attach_ext"/>
+    </resultMap>
+
+</mapper>

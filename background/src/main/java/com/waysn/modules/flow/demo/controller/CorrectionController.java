@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.flow.demo.controller;
@@ -12,9 +12,9 @@ import com.waysn.comm.validator.group.AddGroup;
 import com.waysn.comm.validator.group.DefaultGroup;
 import com.waysn.modules.flow.demo.dto.CorrectionDTO;
 import com.waysn.modules.flow.demo.service.CorrectionService;
+import com.waysn.modules.flow.dto.ProcessInstanceDTO;
 import com.waysn.modules.flow.service.FlowRunningService;
 import com.waysn.modules.security.user.SecurityUser;
-import com.waysn.modules.flow.dto.ProcessInstanceDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -27,12 +27,12 @@ import java.util.Map;
 /**
  * 转正申请
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @RestController
 @RequestMapping("flow/demo/correction")
 @AllArgsConstructor
-@Api(tags="转正申请")
+@Api(tags = "转正申请")
 public class CorrectionController {
     private final CorrectionService correctionService;
     private final FlowRunningService flowRunningService;
@@ -40,7 +40,7 @@ public class CorrectionController {
     @PostMapping("start")
     @ApiOperation("启动流程")
     @RequiresPermissions("sys:flow:all")
-    public Result startProcess(@RequestBody CorrectionDTO dto){
+    public Result startProcess(@RequestBody CorrectionDTO dto) {
         //效验数据
         ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
 
@@ -63,7 +63,7 @@ public class CorrectionController {
     @GetMapping("{id}")
     @ApiOperation("表单信息")
     @RequiresPermissions("sys:flow:all")
-    public Result<CorrectionDTO> info(@PathVariable("id") Long id){
+    public Result<CorrectionDTO> info(@PathVariable("id") Long id) {
         CorrectionDTO correction = correctionService.get(id);
 
         return new Result<CorrectionDTO>().ok(correction);

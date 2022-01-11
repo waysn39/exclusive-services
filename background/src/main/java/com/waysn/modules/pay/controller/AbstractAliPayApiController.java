@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,7 +13,7 @@ import com.ijpay.alipay.AliPayApiConfig;
 /**
  * 涉及支付宝接口调用的Controller，需要继承 AbstractAliPayApiController
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public abstract class AbstractAliPayApiController {
     /**

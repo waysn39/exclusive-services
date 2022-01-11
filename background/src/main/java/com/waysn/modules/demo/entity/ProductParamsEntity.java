@@ -14,35 +14,35 @@ import java.util.Date;
 /**
  * 产品参数管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @TableName("tb_product_params")
 public class ProductParamsEntity extends BaseEntity {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 参数名
      */
-	private String paramName;
+    private String paramName;
     /**
      * 参数值
      */
-	private String paramValue;
+    private String paramValue;
     /**
      * 产品ID
      */
-	private Long productId;
+    private Long productId;
     /**
      * 更新者
      */
-	@TableField(fill = FieldFill.INSERT_UPDATE)
-	private Long updater;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Long updater;
     /**
      * 更新时间
      */
-	@TableField(fill = FieldFill.INSERT_UPDATE)
-	@JsonFormat(pattern = DateUtils.DATE_TIME_PATTERN)
-	private Date updateDate;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @JsonFormat(pattern = DateUtils.DATE_TIME_PATTERN)
+    private Date updateDate;
 }

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,7 +13,7 @@ import com.waysn.modules.sys.service.SysParamsService;
 
 /**
  * 文件上传Factory
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public final class OSSFactory {
     private static SysParamsService sysParamsService;
@@ -22,21 +22,21 @@ public final class OSSFactory {
         OSSFactory.sysParamsService = SpringContextUtils.getBean(SysParamsService.class);
     }
 
-    public static AbstractCloudStorageService build(){
+    public static AbstractCloudStorageService build() {
         //获取云存储配置信息
         CloudStorageConfig config = sysParamsService.getValueObject(Constant.CLOUD_STORAGE_CONFIG_KEY, CloudStorageConfig.class);
 
-        if(config.getType() == Constant.CloudService.QINIU.getValue()){
+        if (config.getType() == Constant.CloudService.QINIU.getValue()) {
             return new QiniuCloudStorageService(config);
-        }else if(config.getType() == Constant.CloudService.ALIYUN.getValue()){
+        } else if (config.getType() == Constant.CloudService.ALIYUN.getValue()) {
             return new AliyunCloudStorageService(config);
-        }else if(config.getType() == Constant.CloudService.QCLOUD.getValue()){
+        } else if (config.getType() == Constant.CloudService.QCLOUD.getValue()) {
             return new QcloudCloudStorageService(config);
-        }else if(config.getType() == Constant.CloudService.FASTDFS.getValue()){
+        } else if (config.getType() == Constant.CloudService.FASTDFS.getValue()) {
             return new FastDFSCloudStorageService(config);
-        }else if(config.getType() == Constant.CloudService.LOCAL.getValue()){
+        } else if (config.getType() == Constant.CloudService.LOCAL.getValue()) {
             return new LocalCloudStorageService(config);
-        }else if(config.getType() == Constant.CloudService.MINIO.getValue()){
+        } else if (config.getType() == Constant.CloudService.MINIO.getValue()) {
             return new MinioCloudStorageService(config);
         }
 

@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -16,31 +16,31 @@ import java.util.Date;
 
 /**
  * 用户Token
- * 
- * @author Mark sunlightcs@gmail.com
+ *
+ * @author jinyiming waysn39@hotmail.com
  */
 @Data
 @TableName("tb_token")
 public class TokenEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@TableId
-	private Long id;
-	/**
-	 * 用户ID
-	 */
-	private Long userId;
-	/**
-	 * 用户token
-	 */
-	private String token;
-	/**
-	 * 过期时间
-	 */
-	private Date expireDate;
-	/**
-	 * 更新时间
-	 */
-	private Date updateDate;
+    @TableId
+    private Long id;
+    /**
+     * 用户ID
+     */
+    private Long userId;
+    /**
+     * 用户token
+     */
+    private String token;
+    /**
+     * 过期时间
+     */
+    private Date expireDate;
+    /**
+     * 更新时间
+     */
+    private Date updateDate;
 
 }

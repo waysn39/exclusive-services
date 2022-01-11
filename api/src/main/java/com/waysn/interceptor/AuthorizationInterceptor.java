@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -9,7 +9,7 @@ package com.waysn.interceptor;
 
 import com.waysn.annotation.Login;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.entity.TokenEntity;
 import com.waysn.service.TokenService;
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 权限(Token)验证
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
@@ -36,32 +36,32 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Login annotation;
-        if(handler instanceof HandlerMethod) {
+        if (handler instanceof HandlerMethod) {
             annotation = ((HandlerMethod) handler).getMethodAnnotation(Login.class);
-        }else{
+        } else {
             return true;
         }
 
-        if(annotation == null){
+        if (annotation == null) {
             return true;
         }
 
         //从header中获取token
         String token = request.getHeader("token");
         //如果header中不存在token，则从参数中获取token
-        if(StringUtils.isBlank(token)){
+        if (StringUtils.isBlank(token)) {
             token = request.getParameter("token");
         }
 
         //token为空
-        if(StringUtils.isBlank(token)){
-            throw new RenException(ErrorCode.TOKEN_NOT_EMPTY);
+        if (StringUtils.isBlank(token)) {
+            throw new ServicesException(ErrorCode.TOKEN_NOT_EMPTY);
         }
 
         //查询token信息
         TokenEntity tokenEntity = tokenService.getByToken(token);
-        if(tokenEntity == null || tokenEntity.getExpireDate().getTime() < System.currentTimeMillis()){
-            throw new RenException(ErrorCode.TOKEN_INVALID);
+        if (tokenEntity == null || tokenEntity.getExpireDate().getTime() < System.currentTimeMillis()) {
+            throw new ServicesException(ErrorCode.TOKEN_INVALID);
         }
 
         //设置userId到request里，后续根据userId，获取用户信息

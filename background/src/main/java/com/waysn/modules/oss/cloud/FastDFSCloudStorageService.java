@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -10,7 +10,7 @@ package com.waysn.modules.oss.cloud;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.DefaultGenerateStorageClient;
 import com.waysn.comm.exception.ErrorCode;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.comm.utils.SpringContextUtils;
 
 import java.io.ByteArrayInputStream;
@@ -19,7 +19,7 @@ import java.io.InputStream;
 /**
  * FastDFS
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class FastDFSCloudStorageService extends AbstractCloudStorageService {
     private static DefaultGenerateStorageClient defaultGenerateStorageClient;
@@ -28,7 +28,7 @@ public class FastDFSCloudStorageService extends AbstractCloudStorageService {
         defaultGenerateStorageClient = (DefaultGenerateStorageClient) SpringContextUtils.getBean("defaultGenerateStorageClient");
     }
 
-    public FastDFSCloudStorageService(CloudStorageConfig config){
+    public FastDFSCloudStorageService(CloudStorageConfig config) {
         this.config = config;
     }
 
@@ -42,8 +42,8 @@ public class FastDFSCloudStorageService extends AbstractCloudStorageService {
         StorePath storePath;
         try {
             storePath = defaultGenerateStorageClient.uploadFile("group1", inputStream, inputStream.available(), suffix);
-        }catch (Exception ex){
-            throw new RenException(ErrorCode.OSS_UPLOAD_FILE_ERROR, ex, ex.getMessage());
+        } catch (Exception ex) {
+            throw new ServicesException(ErrorCode.OSS_UPLOAD_FILE_ERROR, ex, ex.getMessage());
         }
 
         return config.getFastdfsDomain() + "/" + storePath.getPath();

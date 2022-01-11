@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 package com.waysn.modules.pay.controller;
@@ -13,7 +13,7 @@ import com.ijpay.alipay.AliPayApi;
 import com.ijpay.alipay.AliPayApiConfig;
 import com.ijpay.alipay.AliPayApiConfigKit;
 import com.waysn.comm.constant.Constant;
-import com.waysn.comm.exception.RenException;
+import com.waysn.comm.exception.ServicesException;
 import com.waysn.modules.pay.config.AliPayProperties;
 import com.waysn.modules.pay.dto.AlipayNotifyLogDTO;
 import com.waysn.modules.pay.entity.OrderEntity;
@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * 支付宝支付
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @RestController
 @RequestMapping("pay/alipay")
@@ -51,19 +51,19 @@ public class AliPayController extends AbstractAliPayApiController {
             aliPayApiConfig = AliPayApiConfigKit.getApiConfig(properties.getAppId());
         } catch (Exception e) {
             aliPayApiConfig = AliPayApiConfig.builder()
-                .setAppId(properties.getAppId())
-                .setAliPayPublicKey(properties.getPublicKey())
-                .setAppCertPath(properties.getAppCertPath())
-                .setAliPayCertPath(properties.getAliPayCertPath())
-                .setAliPayRootCertPath(properties.getAliPayRootCertPath())
-                .setCharset("UTF-8")
-                .setPrivateKey(properties.getPrivateKey())
-                .setServiceUrl(properties.getServerUrl())
-                .setSignType("RSA2")
-                // 普通公钥方式
-                //.build();
-                // 证书模式
-                .buildByCert();
+                    .setAppId(properties.getAppId())
+                    .setAliPayPublicKey(properties.getPublicKey())
+                    .setAppCertPath(properties.getAppCertPath())
+                    .setAliPayCertPath(properties.getAliPayCertPath())
+                    .setAliPayRootCertPath(properties.getAliPayRootCertPath())
+                    .setCharset("UTF-8")
+                    .setPrivateKey(properties.getPrivateKey())
+                    .setServiceUrl(properties.getServerUrl())
+                    .setSignType("RSA2")
+                    // 普通公钥方式
+                    //.build();
+                    // 证书模式
+                    .buildByCert();
         }
         return aliPayApiConfig;
     }
@@ -74,12 +74,12 @@ public class AliPayController extends AbstractAliPayApiController {
     @RequestMapping(value = "/webPay")
     public void webPay(HttpServletResponse response, Long orderId) throws Exception {
         OrderEntity order = orderService.getByOrderId(orderId);
-        if(order == null){
-            throw new RenException("订单不存在");
+        if (order == null) {
+            throw new ServicesException("订单不存在");
         }
 
-        if(order.getStatus() != Constant.OrderStatus.WAITING.getValue()){
-            throw new RenException("订单已失效");
+        if (order.getStatus() != Constant.OrderStatus.WAITING.getValue()) {
+            throw new ServicesException("订单已失效");
         }
 
         AlipayTradePagePayModel model = new AlipayTradePagePayModel();
@@ -130,7 +130,7 @@ public class AliPayController extends AbstractAliPayApiController {
         //查询订单信息
         OrderEntity order = orderService.getByOrderId(alipayNotifyLog.getOutTradeNo());
         //重复通知，不再处理
-        if(order.getStatus() == Constant.OrderStatus.FINISH.getValue()){
+        if (order.getStatus() == Constant.OrderStatus.FINISH.getValue()) {
             return "success";
         }
 

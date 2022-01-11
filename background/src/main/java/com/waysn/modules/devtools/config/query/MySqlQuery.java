@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -13,7 +13,7 @@ import org.apache.commons.lang.StringUtils;
 /**
  * MySQL查询
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public class MySqlQuery implements AbstractQuery {
 
@@ -28,7 +28,7 @@ public class MySqlQuery implements AbstractQuery {
         sql.append("select table_name, table_comment from information_schema.tables ");
         sql.append("where table_schema = (select database()) ");
         //表名查询
-        if(StringUtils.isNotBlank(tableName)){
+        if (StringUtils.isNotBlank(tableName)) {
             sql.append("and table_name = '").append(tableName).append("' ");
         }
         sql.append("order by table_name asc");

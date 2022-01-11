@@ -7,7 +7,7 @@ import com.waysn.modules.mp.entity.MpAccountEntity;
 /**
  * 公众号账号管理
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 public interface MpAccountService extends CrudService<MpAccountEntity, MpAccountDTO> {
 

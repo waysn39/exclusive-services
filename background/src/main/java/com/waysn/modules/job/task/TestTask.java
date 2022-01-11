@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2018 waysn All rights reserved.
- *
- *
+ * <p>
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -16,14 +16,14 @@ import org.springframework.stereotype.Component;
  *
  * testTask为spring bean的名称
  *
- * @author Mark sunlightcs@gmail.com
+ * @author jinyiming waysn39@hotmail.com
  */
 @Component("testTask")
-public class TestTask implements ITask{
-	private Logger logger = LoggerFactory.getLogger(getClass());
+public class TestTask implements ITask {
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
-	@Override
-	public void run(String params){
-		logger.debug("TestTask定时任务正在执行，参数为：{}", params);
-	}
+    @Override
+    public void run(String params) {
+        logger.debug("TestTask定时任务正在执行，参数为：{}", params);
+    }
 }
