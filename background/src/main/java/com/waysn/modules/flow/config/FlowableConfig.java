@@ -54,21 +54,21 @@ public class FlowableConfig {
     }
 
 
-    @Bean
-    public Liquibase liquibase(DataSource dataSource) {
-        LOGGER.info("Configuring Liquibase");
-        try {
-            DatabaseConnection connection = new JdbcConnection(dataSource.getConnection());
-            Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);
-            database.setDatabaseChangeLogTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogTableName());
-            database.setDatabaseChangeLogLockTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogLockTableName());
-
-            Liquibase liquibase = new Liquibase("META-INF/liquibase/flowable-modeler-app-db-changelog.xml", new ClassLoaderResourceAccessor(), database);
-            liquibase.update("flowable");
-            return liquibase;
-
-        } catch (Exception e) {
-            throw new RuntimeException("Error creating liquibase database", e);
-        }
-    }
+//    @Bean
+//    public Liquibase liquibase(DataSource dataSource) {
+//        LOGGER.info("Configuring Liquibase");
+//        try {
+//            DatabaseConnection connection = new JdbcConnection(dataSource.getConnection());
+//            Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);
+//            database.setDatabaseChangeLogTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogTableName());
+//            database.setDatabaseChangeLogLockTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogLockTableName());
+//
+//            Liquibase liquibase = new Liquibase("META-INF/liquibase/flowable-modeler-app-db-changelog.xml", new ClassLoaderResourceAccessor(), database);
+//            liquibase.update("flowable");
+//            return liquibase;
+//
+//        } catch (Exception e) {
+//            throw new RuntimeException("Error creating liquibase database", e);
+//        }
+//    }
 }
