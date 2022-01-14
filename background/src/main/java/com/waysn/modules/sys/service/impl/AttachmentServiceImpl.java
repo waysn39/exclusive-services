@@ -13,6 +13,7 @@ import com.waysn.modules.sys.dto.AttachmentDTO;
 import com.waysn.modules.sys.entity.AttachmentEntity;
 import com.waysn.modules.sys.service.AttachmentService;
 import com.waysn.modules.sys.service.SysParamsService;
+import io.minio.errors.MinioException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +23,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -47,7 +49,7 @@ public class AttachmentServiceImpl extends CrudServiceImpl<AttachmentDao, Attach
     @Override
     public AttachmentEntity upload(MultipartFile file) {
         AttachmentEntity entity = new AttachmentEntity();
-        entity.setAttachName(file.getName());
+        entity.setAttachName(file.getOriginalFilename());
         entity.setAttachLength(file.getSize());
         entity.setAttachExt(getExtension(file.getOriginalFilename()));
         String path = generateAttachmentName(entity.getAttachExt());
@@ -66,6 +68,17 @@ public class AttachmentServiceImpl extends CrudServiceImpl<AttachmentDao, Attach
         LambdaQueryWrapper<AttachmentEntity> wrapper = new LambdaQueryWrapper<AttachmentEntity>();
         wrapper.eq(AttachmentEntity::getAttachPath, path);
         return baseDao.selectOne(wrapper);
+    }
+
+    @Override
+    public List<AttachmentEntity> getAllBlogImage() {
+        LambdaQueryWrapper<AttachmentEntity> wrapper = new LambdaQueryWrapper<AttachmentEntity>();
+        return baseDao.selectList(wrapper);
+    }
+
+    @Override
+    public String getShareUrl(String path) throws MinioException {
+        return getMinio().getShareUrl(Paths.get(path));
     }
 
     @Override

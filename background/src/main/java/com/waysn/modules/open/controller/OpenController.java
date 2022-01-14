@@ -4,8 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.waysn.comm.utils.Result;
 import com.waysn.comm.utils.StringUtils;
 import com.waysn.modules.blog.entity.NavbarinfoEntity;
+import com.waysn.modules.blog.service.BlogImageService;
 import com.waysn.modules.blog.service.NavbarinfoService;
 import com.waysn.modules.blog.vo.NavbarinfoVo;
+import com.waysn.modules.sys.entity.AttachmentEntity;
+import com.waysn.modules.sys.service.AttachmentService;
+import io.minio.errors.MinioException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +26,11 @@ import java.util.List;
 public class OpenController {
     @Resource
     private NavbarinfoService navbarinfoService;
+    @Resource
+    private BlogImageService blogImageService;
+
+    @Resource
+    private AttachmentService attachmentService;
 
     @GetMapping("/get/blog/navbar")
     @ApiOperation("获取博客导航栏信息")
@@ -34,6 +43,18 @@ public class OpenController {
             navbarinfoVoList.add(navbarinfoVo);
         }
         return new Result().ok(JSON.parse(JSON.toJSONString(navbarinfoVoList)));
+    }
+
+    @GetMapping("/get/background/image")
+    @ApiOperation("获取博客导航栏信息")
+    public Result getBackgroundImg() throws MinioException {
+
+        List<AttachmentEntity> attachmentEntityList = attachmentService.getAllBlogImage();
+        List<String> image = new ArrayList<>();
+        for (AttachmentEntity entity : attachmentEntityList) {
+            image.add(attachmentService.getShareUrl(entity.getAttachPath()));
+        }
+        return new Result().ok(image);
     }
 
     private NavbarinfoVo mapNavbarInfoVo(NavbarinfoEntity item) {

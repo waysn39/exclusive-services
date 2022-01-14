@@ -3,9 +3,11 @@ package com.waysn.modules.sys.service;
 import com.waysn.comm.service.CrudService;
 import com.waysn.modules.sys.dto.AttachmentDTO;
 import com.waysn.modules.sys.entity.AttachmentEntity;
+import io.minio.errors.MinioException;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 附件管理
@@ -29,6 +31,10 @@ public interface AttachmentService extends CrudService<AttachmentEntity, Attachm
      * @return 附件信息
      */
     AttachmentEntity getByPath(String path);
+
+    List<AttachmentEntity> getAllBlogImage();
+
+    String getShareUrl(String path) throws MinioException;
 
     /**
      * 根据Path下载文件
