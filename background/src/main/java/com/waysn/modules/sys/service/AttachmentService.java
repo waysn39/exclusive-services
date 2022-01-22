@@ -32,9 +32,30 @@ public interface AttachmentService extends CrudService<AttachmentEntity, Attachm
      */
     AttachmentEntity getByPath(String path);
 
-    List<AttachmentEntity> getAllBlogImage();
+    /**
+     * 获取Paths的附件信息
+     *
+     * @return
+     */
+    List<AttachmentEntity> getByPaths(List<String> paths);
 
+    /**
+     * 获取Url地址
+     *
+     * @param path
+     * @return
+     * @throws MinioException
+     */
     String getShareUrl(String path) throws MinioException;
+
+    /**
+     * 获取Url地址
+     *
+     * @param paths
+     * @return
+     * @throws MinioException
+     */
+    List<String> getShareUrls(List<String> paths) throws MinioException;
 
     /**
      * 根据Path下载文件

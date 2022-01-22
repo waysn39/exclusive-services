@@ -7,7 +7,6 @@ import com.waysn.modules.blog.entity.NavbarinfoEntity;
 import com.waysn.modules.blog.service.BlogImageService;
 import com.waysn.modules.blog.service.NavbarinfoService;
 import com.waysn.modules.blog.vo.NavbarinfoVo;
-import com.waysn.modules.sys.entity.AttachmentEntity;
 import com.waysn.modules.sys.service.AttachmentService;
 import io.minio.errors.MinioException;
 import io.swagger.annotations.Api;
@@ -46,15 +45,17 @@ public class OpenController {
     }
 
     @GetMapping("/get/background/image")
-    @ApiOperation("获取博客导航栏信息")
+    @ApiOperation("获取博客背景图")
     public Result getBackgroundImg() throws MinioException {
+        List<String> paths = blogImageService.getBackGroundImg();
+        return new Result().ok(attachmentService.getShareUrls(paths));
+    }
 
-        List<AttachmentEntity> attachmentEntityList = attachmentService.getAllBlogImage();
-        List<String> image = new ArrayList<>();
-        for (AttachmentEntity entity : attachmentEntityList) {
-            image.add(attachmentService.getShareUrl(entity.getAttachPath()));
-        }
-        return new Result().ok(image);
+    @GetMapping("/get/background/logo")
+    @ApiOperation("获取博客背景图")
+    public Result getBackgroundLogo() throws MinioException {
+        List<String> paths = blogImageService.getLogoImg();
+        return new Result().ok(attachmentService.getShareUrls(paths));
     }
 
     private NavbarinfoVo mapNavbarInfoVo(NavbarinfoEntity item) {

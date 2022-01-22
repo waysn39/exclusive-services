@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -71,14 +72,25 @@ public class AttachmentServiceImpl extends CrudServiceImpl<AttachmentDao, Attach
     }
 
     @Override
-    public List<AttachmentEntity> getAllBlogImage() {
+    public List<AttachmentEntity> getByPaths(List<String> paths) {
         LambdaQueryWrapper<AttachmentEntity> wrapper = new LambdaQueryWrapper<AttachmentEntity>();
+        wrapper.in(AttachmentEntity::getAttachPath, paths);
         return baseDao.selectList(wrapper);
     }
 
     @Override
     public String getShareUrl(String path) throws MinioException {
         return getMinio().getShareUrl(Paths.get(path));
+    }
+
+    @Override
+    public List<String> getShareUrls(List<String> paths) throws MinioException {
+        List<AttachmentEntity> attachmentEntityList = getByPaths(paths);
+        List<String> image = new ArrayList<>();
+        for (AttachmentEntity entity : attachmentEntityList) {
+            image.add(getShareUrl(entity.getAttachPath()));
+        }
+        return image;
     }
 
     @Override
