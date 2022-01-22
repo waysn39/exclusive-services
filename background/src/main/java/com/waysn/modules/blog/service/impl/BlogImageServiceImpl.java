@@ -6,6 +6,7 @@ import com.waysn.comm.service.impl.CrudServiceImpl;
 import com.waysn.modules.blog.dao.BlogImageDao;
 import com.waysn.modules.blog.dto.BlogImageDTO;
 import com.waysn.modules.blog.entity.BlogImageEntity;
+import com.waysn.modules.blog.enums.BlogImageEnum;
 import com.waysn.modules.blog.service.BlogImageService;
 import org.springframework.stereotype.Service;
 
@@ -28,18 +29,10 @@ public class BlogImageServiceImpl extends CrudServiceImpl<BlogImageDao, BlogImag
         return wrapper;
     }
 
-
     @Override
-    public List<String> getBackGroundImg() {
+    public List<String> getImgByType(BlogImageEnum type) {
         LambdaQueryWrapper<BlogImageEntity> wrapper = new LambdaQueryWrapper<BlogImageEntity>();
-        wrapper.eq(BlogImageEntity::getImageType, 1);
-        return baseDao.selectList(wrapper).stream().map(BlogImageEntity::getImagePath).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<String> getLogoImg() {
-        LambdaQueryWrapper<BlogImageEntity> wrapper = new LambdaQueryWrapper<BlogImageEntity>();
-        wrapper.eq(BlogImageEntity::getImageType, 0);
+        wrapper.eq(BlogImageEntity::getImageType, type.value());
         return baseDao.selectList(wrapper).stream().map(BlogImageEntity::getImagePath).collect(Collectors.toList());
     }
 }

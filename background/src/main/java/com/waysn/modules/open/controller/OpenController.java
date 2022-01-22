@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.waysn.comm.utils.Result;
 import com.waysn.comm.utils.StringUtils;
 import com.waysn.modules.blog.entity.NavbarinfoEntity;
+import com.waysn.modules.blog.enums.BlogImageEnum;
 import com.waysn.modules.blog.service.BlogImageService;
 import com.waysn.modules.blog.service.NavbarinfoService;
 import com.waysn.modules.blog.vo.NavbarinfoVo;
@@ -47,14 +48,28 @@ public class OpenController {
     @GetMapping("/get/background/image")
     @ApiOperation("获取博客背景图")
     public Result getBackgroundImg() throws MinioException {
-        List<String> paths = blogImageService.getBackGroundImg();
+        List<String> paths = blogImageService.getImgByType(BlogImageEnum.PC_BACKGROUND);
         return new Result().ok(attachmentService.getShareUrls(paths));
     }
 
-    @GetMapping("/get/background/logo")
-    @ApiOperation("获取博客背景图")
-    public Result getBackgroundLogo() throws MinioException {
-        List<String> paths = blogImageService.getLogoImg();
+    @GetMapping("/get/logo")
+    @ApiOperation("获取博客Logo")
+    public Result getLogo() throws MinioException {
+        List<String> paths = blogImageService.getImgByType(BlogImageEnum.LOGO);
+        return new Result().ok(attachmentService.getShareUrls(paths));
+    }
+
+    @GetMapping("/get/head")
+    @ApiOperation("获取博客头像")
+    public Result getHead() throws MinioException {
+        List<String> paths = blogImageService.getImgByType(BlogImageEnum.HEAD);
+        return new Result().ok(attachmentService.getShareUrls(paths));
+    }
+
+    @GetMapping("/get/word/head/img")
+    @ApiOperation("获取文字头部图片")
+    public Result getWordHeadImg() throws MinioException {
+        List<String> paths = blogImageService.getImgByType(BlogImageEnum.WORD_HEAD);
         return new Result().ok(attachmentService.getShareUrls(paths));
     }
 
