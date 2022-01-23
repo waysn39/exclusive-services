@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("open")
@@ -71,6 +72,15 @@ public class OpenController {
     public Result getWordHeadImg() throws MinioException {
         List<String> paths = blogImageService.getImgByType(BlogImageEnum.WORD_HEAD);
         return new Result().ok(attachmentService.getShareUrls(paths));
+    }
+
+    @GetMapping("/get/random/word/head/img")
+    @ApiOperation("获取文字头部图片")
+    public Result getRandomWordHeadImg() throws MinioException {
+        Random random = new Random();
+        List<String> paths = blogImageService.getImgByType(BlogImageEnum.WORD_HEAD);
+        List<String> shareUrlss = attachmentService.getShareUrls(paths);
+        return new Result().ok(shareUrlss.get(random.nextInt(shareUrlss.size())));
     }
 
     private NavbarinfoVo mapNavbarInfoVo(NavbarinfoEntity item) {
