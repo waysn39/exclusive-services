@@ -3,9 +3,11 @@ package com.waysn.modules.open.controller;
 import com.alibaba.fastjson.JSON;
 import com.waysn.comm.utils.Result;
 import com.waysn.comm.utils.StringUtils;
+import com.waysn.modules.blog.entity.BlogLineWordEntity;
 import com.waysn.modules.blog.entity.NavbarinfoEntity;
 import com.waysn.modules.blog.enums.BlogImageEnum;
 import com.waysn.modules.blog.service.BlogImageService;
+import com.waysn.modules.blog.service.BlogLineWordService;
 import com.waysn.modules.blog.service.NavbarinfoService;
 import com.waysn.modules.blog.vo.NavbarinfoVo;
 import com.waysn.modules.sys.service.AttachmentService;
@@ -29,6 +31,8 @@ public class OpenController {
     private NavbarinfoService navbarinfoService;
     @Resource
     private BlogImageService blogImageService;
+    @Resource
+    private BlogLineWordService blogLineWordService;
 
     @Resource
     private AttachmentService attachmentService;
@@ -81,6 +85,15 @@ public class OpenController {
         List<String> paths = blogImageService.getImgByType(BlogImageEnum.WORD_HEAD);
         List<String> shareUrlss = attachmentService.getShareUrls(paths);
         return new Result().ok(shareUrlss.get(random.nextInt(shareUrlss.size())));
+    }
+
+    @GetMapping("/get/talk")
+    @ApiOperation("获取随机文字")
+    public Result getRandomWord() {
+        Random random = new Random();
+        List<BlogLineWordEntity> wordEntityList = blogLineWordService.getAllWord();
+        BlogLineWordEntity word = wordEntityList.get(random.nextInt(wordEntityList.size()));
+        return new Result().ok(word.getLineWord());
     }
 
     private NavbarinfoVo mapNavbarInfoVo(NavbarinfoEntity item) {
