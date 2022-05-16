@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.waysn.modules.game.dao.GameInfoDao">
+
+    <resultMap type="com.waysn.modules.game.entity.GameInfoEntity" id="gameInfoMap">
+        <result property="id" column="id"/>
+        <result property="gameTitle" column="game_title"/>
+        <result property="gameCustomTitle" column="game_custom_title"/>
+        <result property="gameTitleKeyword" column="game_title_keyword"/>
+        <result property="gameVersion" column="game_version"/>
+        <result property="classifyId" column="classify_id"/>
+        <result property="classifyName" column="classify_name"/>
+        <result property="gamePlatformType" column="game_platform_type"/>
+        <result property="downloadJumpType" column="download_jump_type"/>
+        <result property="gameDownloadUrl" column="game_download_url"/>
+        <result property="gameDownloadAndroidUrl" column="game_download_android_url"/>
+        <result property="gameDownloadIosUrl" column="game_download_ios_url"/>
+        <result property="gameDownloadInfo" column="game_download_info"/>
+        <result property="gameSummaryn" column="game_summaryn"/>
+        <result property="gameInfo" column="game_info"/>
+        <result property="gameKeyWord" column="game_key_word"/>
+        <result property="gameSize" column="game_size"/>
+        <result property="gamePicUrl" column="game_pic_url"/>
+        <result property="gameMark" column="game_mark"/>
+        <result property="isUsed" column="is_used"/>
+        <result property="creator" column="creator"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updater" column="updater"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+</mapper>
