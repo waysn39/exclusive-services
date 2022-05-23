@@ -11,6 +11,7 @@ import com.waysn.modules.security.user.SecurityUser;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,4 +38,9 @@ public class GameClassifyServiceImpl extends CrudServiceImpl<GameClassifyDao, Ga
     }
 
 
+    @Override
+    public List<GameClassifyEntity> getAllClassify() {
+        QueryWrapper<GameClassifyEntity> wrapper = new QueryWrapper<>();
+        return baseDao.selectList(wrapper);
+    }
 }
