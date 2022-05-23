@@ -2,12 +2,14 @@ package com.waysn.modules.game.controller.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @Author: jinyiming
  * @Date: 2022/5/23
  **/
 @Data
+@Accessors(chain = true)
 public class GameClassifyVo {
     /**
      * 游戏分类ID
