@@ -181,6 +181,12 @@
 			<artifactId>weixin-java-mp</artifactId>
 			<version>4.2.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson</artifactId>
+			<version>3.17.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
