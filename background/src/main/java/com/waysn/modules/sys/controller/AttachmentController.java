@@ -119,10 +119,4 @@ public class AttachmentController {
     public Result upload(@RequestParam("file") MultipartFile file) {
         return new Result().ok(attachmentService.upload(file));
     }
-
-    @ApiOperation(value = "文件上传", tags = "附件接口")
-    @GetMapping("/download/{path}")
-    public void download(@PathVariable String path, HttpServletResponse response) throws Exception {
-        attachmentService.download(path, response);
-    }
 }

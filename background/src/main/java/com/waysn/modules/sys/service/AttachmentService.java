@@ -44,22 +44,16 @@ public interface AttachmentService extends CrudService<AttachmentEntity, Attachm
      *
      * @param path
      * @return
-     * @throws MinioException
      */
-    String getShareUrl(String path) throws MinioException;
+    String getShareUrl(String path);
 
     /**
      * 获取Url地址
      *
      * @param paths
      * @return
-     * @throws MinioException
      */
-    List<String> getShareUrls(List<String> paths) throws MinioException;
+    List<String> getShareUrls(List<String> paths);
 
-    /**
-     * 根据Path下载文件
-     */
-    void download(String path, HttpServletResponse response) throws Exception;
 
 }

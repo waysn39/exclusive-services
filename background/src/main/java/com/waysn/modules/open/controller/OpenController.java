@@ -52,14 +52,14 @@ public class OpenController {
 
     @GetMapping("/get/background/image")
     @ApiOperation("获取博客背景图")
-    public Result getBackgroundImg() throws MinioException {
+    public Result getBackgroundImg() {
         List<String> paths = blogImageService.getImgByType(BlogImageEnum.PC_BACKGROUND);
         return new Result().ok(attachmentService.getShareUrls(paths));
     }
 
     @GetMapping("/get/logo")
     @ApiOperation("获取博客Logo")
-    public Result getLogo() throws MinioException {
+    public Result getLogo()  {
         List<String> paths = blogImageService.getImgByType(BlogImageEnum.LOGO);
         return new Result().ok(attachmentService.getShareUrls(paths));
     }
