@@ -37,7 +37,7 @@ public class OpenGameController {
 
     @GetMapping("/get/all/game/classify")
     @ApiOperation("获取所有游戏分类")
-    public Result<List<GameClassifyVo>> getAllGameClassify(@PathVariable("id") Long id){
+    public Result<List<GameClassifyVo>> getAllGameClassify(){
         return new Result<List<GameClassifyVo>>().ok(ConvertUtils.sourceToTarget(gameClassifyService.getAllClassify(), GameClassifyVo.class));
     }
 

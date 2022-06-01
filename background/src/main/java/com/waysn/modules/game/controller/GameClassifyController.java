@@ -3,6 +3,7 @@ package com.waysn.modules.game.controller;
 import com.waysn.comm.annotation.LogOperation;
 import com.waysn.comm.constant.Constant;
 import com.waysn.comm.page.PageData;
+import com.waysn.comm.utils.ConvertUtils;
 import com.waysn.comm.utils.ExcelUtils;
 import com.waysn.comm.utils.Result;
 import com.waysn.comm.validator.AssertUtils;
@@ -10,7 +11,10 @@ import com.waysn.comm.validator.ValidatorUtils;
 import com.waysn.comm.validator.group.AddGroup;
 import com.waysn.comm.validator.group.DefaultGroup;
 import com.waysn.comm.validator.group.UpdateGroup;
+import com.waysn.modules.game.controller.vo.GameClassifyVo;
+import com.waysn.modules.game.controller.vo.SelectDataVo;
 import com.waysn.modules.game.dto.GameClassifyDTO;
+import com.waysn.modules.game.entity.GameClassifyEntity;
 import com.waysn.modules.game.excel.GameClassifyExcel;
 import com.waysn.modules.game.service.GameClassifyService;
 import io.swagger.annotations.Api;
@@ -23,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +44,20 @@ import java.util.Map;
 public class GameClassifyController {
     @Autowired
     private GameClassifyService gameClassifyService;
+
+    @GetMapping("/select/data/game/classify")
+    @ApiOperation("获取所有游戏分类")
+    public Result<List<SelectDataVo>> selectDataGameClassify(){
+        List<GameClassifyEntity> gameClassifyEntityList =gameClassifyService.getAllClassify();
+        List<SelectDataVo> result = new ArrayList<>();
+        for (GameClassifyEntity item : gameClassifyEntityList){
+            SelectDataVo temp = new SelectDataVo();
+            temp.setLabel(item.getClassifyName());
+            temp.setValue(item.getId().toString());
+            result.add(temp);
+        }
+        return new Result<List<SelectDataVo>>().ok(result);
+    }
 
     @GetMapping("page")
     @ApiOperation("分页")
