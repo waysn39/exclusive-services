@@ -58,13 +58,12 @@ public class UReportController {
     @ApiOperation("删除")
     @LogOperation("删除")
     @RequiresPermissions("sys:ureport:all")
-    public Result delete(@RequestBody Long[] ids) {
+    public Result<Boolean> delete(@RequestBody Long[] ids) {
         //效验数据
         AssertUtils.isArrayEmpty(ids, "id");
 
         ureportDataService.deleteBatchIds(Arrays.asList(ids));
-
-        return new Result();
+        return new Result<Boolean>().ok(Boolean.TRUE);
     }
 
 }

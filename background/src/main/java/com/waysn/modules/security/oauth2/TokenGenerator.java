@@ -19,6 +19,8 @@ import java.util.UUID;
  */
 public class TokenGenerator {
 
+    private TokenGenerator(){}
+
     public static String generateValue() {
         return generateValue(UUID.randomUUID().toString());
     }
