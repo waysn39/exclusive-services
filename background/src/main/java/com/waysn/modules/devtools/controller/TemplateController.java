@@ -46,7 +46,7 @@ public class TemplateController {
     }
 
     @PostMapping
-    public Result save(@RequestBody TemplateEntity entity) {
+    public Result<Boolean> save(@RequestBody TemplateEntity entity) {
         try {
             //检查模板语法是否正确
             GenUtils.getTemplateContent(entity.getContent(), Maps.newHashMap());
@@ -56,11 +56,11 @@ public class TemplateController {
 
         templateService.insert(entity);
 
-        return new Result();
+        return new Result<Boolean> ().ok(Boolean.TRUE);
     }
 
     @PutMapping
-    public Result update(@RequestBody TemplateEntity entity) {
+    public Result<Boolean> update(@RequestBody TemplateEntity entity) {
         try {
             //检查模板语法是否正确
             GenUtils.getTemplateContent(entity.getContent(), Maps.newHashMap());
@@ -69,33 +69,33 @@ public class TemplateController {
         }
         templateService.updateById(entity);
 
-        return new Result();
+        return new Result<Boolean> ().ok(Boolean.TRUE);
     }
 
     @DeleteMapping
-    public Result delete(@RequestBody Long[] ids) {
+    public Result<Boolean> delete(@RequestBody Long[] ids) {
         templateService.deleteBatchIds(Arrays.asList(ids));
 
-        return new Result();
+        return new Result<Boolean> ().ok(Boolean.TRUE);
     }
 
     /**
      * 启用
      */
     @PutMapping("enabled")
-    public Result enabled(@RequestBody Long[] ids) {
+    public Result<Boolean> enabled(@RequestBody Long[] ids) {
         templateService.updateStatusBatch(ids, 0);
 
-        return new Result();
+        return new Result<Boolean> ().ok(Boolean.TRUE);
     }
 
     /**
      * 禁用
      */
     @PutMapping("disabled")
-    public Result disabled(@RequestBody Long[] ids) {
+    public Result<Boolean> disabled(@RequestBody Long[] ids) {
         templateService.updateStatusBatch(ids, 1);
 
-        return new Result();
+        return new Result<Boolean> ().ok(Boolean.TRUE);
     }
 }
